@@ -1,0 +1,17 @@
+# 本番環境
+production:
+  password: ${PRO_PASS}
+  theme_id: ${PRO_THEMEID}
+  store: ${PRO_SHOP}
+
+# テスト環境 （必要あれば）
+staging:
+  password: ${STG_PASS}
+  theme_id: ${STG_THEMEID}
+  store: ${STG_SHOP}
+
+# 開発環境
+development:
+  password: ${DEV_PASS}
+  theme_id: ${DEV_THEMEID}
+  store: ${DEV_SHOP}
