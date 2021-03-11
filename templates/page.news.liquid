@@ -1,15 +1,67 @@
+
 <div class="page-width">
+  {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
+  <div class="breadcrumb">
+  {% assign menu = linklists.news-link-list %}
+  <a href="/">Home </a>
+  {% for link in menu.links %}
+      {% if link.active or link.child_active %} <a href={{link.url}}> > {{ link.title }}</a> {% endif %}
+      {% if sub_link.active or sub_link.child_active %}> <a href={{sub_link.url}} > {{ sub_link.title }}</a> {% endif %}
+  {% endfor %}
+  </div>
+  {% comment %}      パンクズ（リンクリスト）    ################################################ {% endcomment %}
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+
+
       <div class="section-header text-center">
-        <h1>NEWS</h1>
+        <span class="section-title">NEWS</span>
         <p>お知らせ</P>
       </div>
 
       <div class="rte">
-        {{ page.content }}
-        
+        {% comment %} ####      リンクリスト    ############################################## {% endcomment %}
+        {% assign menu = linklists.news-link-list %}
+        {% for link in menu.links %}
+          {% comment %} <p class=""><a href="{{ link.url }}">{{ link.title }}</a></p> {% endcomment %}
+          {% for sub_link in link.links %}
+            <p class="news-content"><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></p>
+            {% for sub_sub_link in sub_link.links %}
+              <p class="news-content"><a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a></p>
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% comment %} ####     リンクリスト   ######################################################## {% endcomment %}
+        {% comment %} {{ page.content }} {% endcomment %}
       </div>
     </div>
   </div>
 </div>
+<style>
+  @media screen and (min-width: 750px) {
+    .breadcrumb {
+      font-size: 0.5em;
+    }
+    .section-title {
+      font-size:1.8em;
+    }
+    .rte {
+      border-top: 1px solid gray;
+    }
+    .news-content {
+      line-height: 1em;
+      margin: 0;
+      font-size :1.2em;
+      padding : 1.5em 0;
+      border-bottom: 1px solid gray;
+    }
+    .news-content a {
+      border:none;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .breadcrumb {
+      display:none;
+    }
+  }
+</style>
