@@ -1,12 +1,12 @@
 <div class="page-width">
   {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
   <div class="breadcrumb">
-  {% assign menu = linklists.news-link-list %}
-  <a href="/">Home </a>
-  {% for link in menu.links %}
-    {% if link.active or link.child_active %} <a href={{link.url}}>  >  {{ link.title }}</a> {% endif %}
-  {% endfor %}
-  <a href={{page.url}}>  >  {{ page.title }}</a>
+    {% assign menu = linklists.news-link-list %}
+    <a href="/">Home </a>
+    {% for link in menu.links %}
+      {% if link.active or link.child_active %} <a href={{link.url}}>  >  {{ link.title }}</a> {% endif %}
+    {% endfor %}
+    <a href={{page.url}}>  >  {{ page.title }}</a>
   </div>
   {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
   <div class="grid">
@@ -54,14 +54,31 @@
     .pagination {
       text-align :center;
       font-weight: bold;
-      margin-bottom: 50px;
+      margin: 40px 0;
       padding-top: 0;
       display: flex;
       justify-content: space-between;
+    }
   }
   @media screen and (max-width: 749px) {
     .breadcrumb {
       display:none;
+    }
+    .news-contents-header {
+      margin: 10px 0;
+    }
+    .news-contents-title {
+      font-weight: bold;
+      font-size: 1.5em;
+      text-align:left;
+    }
+    .pagination {
+      text-align :center;
+      font-weight: bold;
+      margin: 40px 0;
+      padding-top: 0;
+      display: flex;
+      justify-content: space-between;
     }
   }
 </style>
