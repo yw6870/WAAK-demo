@@ -6995,4 +6995,7 @@ hr {
   margin-bottom: 16px; }
 
 .store-availability-list__phone {
-  margin-bottom: 0; }
+  margin-bottom: 0; 
+  color: rgb(216, 216, 216);
+}
+
