@@ -1,0 +1,66 @@
+<div class="page-width">
+  <div class="guide-title">ご利用ガイド</div>
+  <div class="guide-contents">
+  {{ current.page.title }}
+  {% comment %} ############## リンクリスト（ガイドメニュー） ########################################### {% endcomment %}
+    <div class="contents-left">
+      <ul class="guide-menu">
+      {% assign menu = linklists.guide-menu %}
+      {% for link in menu.links %}
+        {% if current.link.title %}<li><a href="{{ link.url }}"><img src="#" alt="-icon">{{ link.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  {% comment %} ############## リンクリスト（ガイドメニュー） ########################################### {% endcomment %}
+
+    <div class="contents-right">
+      <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+        <div class="section-header text-center">
+          <h1>{{ page.title }}</h1>
+        </div>
+
+        <div class="rte">
+          {{ page.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  @media screen and (min-width: 750px) {
+    .guide-title {
+      padding-left: 10px;
+      line-height: 2em;
+      font-weight: bold;
+      background: black;
+      color: white;
+      margin-bottom: 50px;
+    }
+    .guide-contents {
+      display: flex;
+      justify-content:space-between;
+    }
+    .contents-left {
+      border:1px solid black;
+      height:800px;
+      width: 30%;
+    }
+    .guide-menu {
+      border: none;
+    }
+    .guide-menu li {
+      line-height: 3em;
+      border: 1px solid black;
+    }
+    .contents-right {
+      border:1px solid black;
+      height:800px;
+      width: 65%;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    
+  }
+</style>
