@@ -1,21 +1,67 @@
 <div class="page-width">
   {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
+  <div class="breadcrumb">
   {% assign menu = linklists.news-link-list %}
   <a href="/">Home </a>
   {% for link in menu.links %}
     {% if link.active or link.child_active %} <a href={{link.url}}>  >  {{ link.title }}</a> {% endif %}
   {% endfor %}
-   <a href={{page.url}}>  >  {{ page.title }}</a>
+  <a href={{page.url}}>  >  {{ page.title }}</a>
+  </div>
   {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-      <div class="section-header text-center">
-        <h1>{{ page.title }}</h1>
+      <div>
+        <p>NEWS</P>
+      </div>
+      <div class="news-contents-header">
+        <span class="news-contents-title">{{ page.title }}</span>
       </div>
 
       <div class="rte">
         {{ page.content }}
       </div>
+
+      <div class="pagination">
+        <div class="pagination-left-btn"><</div><div>NEWS TOP</div><div class="pagination-right-btn">></div>
+      </div>
     </div>
   </div>
 </div>
+
+<style>
+  @media screen and (min-width: 750px) {
+    .breadcrumb {
+      margin-top: 50px;
+      margin-bottom: 60px;
+      font-size: 0.5em;
+    }
+    .breadcrumb span {
+      color:rgb(164, 164, 164);
+    }
+    .news-contents-header {
+      margin: 20px 0;
+    }
+    .news-contents-title {
+      font-weight: bold;
+      font-size: 1.8em;
+      text-align:left;
+    }
+    .rte {
+      padding-bottom: 80px !important;
+      border-bottom: 1px solid rgb(240, 230, 221);
+    }
+    .pagination {
+      text-align :center;
+      font-weight: bold;
+      margin-bottom: 50px;
+      padding-top: 0;
+      display: flex;
+      justify-content: space-between;
+  }
+  @media screen and (max-width: 749px) {
+    .breadcrumb {
+      display:none;
+    }
+  }
+</style>
