@@ -499,7 +499,6 @@
 
 <!-- ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃　　　　　　サイトヘッダー＿NAV　　　　　＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ -->
 <style>
-
   @media screen and (min-width: 750px) {
     .site-header {
       padding: 0 20px;
@@ -515,39 +514,56 @@
     .site-nav__label {
       border: none;
     }
-    .site-nav--active:nth-of-type(1):after {
+    #SiteNav > li:nth-of-type(1){
+      font-weight:bold;
+    }
+    #SiteNav > li:nth-of-type(2){
+      font-weight:bold;
+    }
+    #SiteNav > li:nth-of-type(3){
+      font-weight:bold;
+    }
+    #SiteNav > li:nth-of-type(4){
+      font-weight:bold;
+    }
+    #SiteNav > li:nth-of-type(5){
+      font-weight:bold;
+    }
+    #SiteNav > li:nth-of-type(6){
+      font-weight:bold;
+    }
+    #SiteNav > li:nth-of-type(1):after{
       content: "用途別商品一覧";
+      font-size: 0.8em;
       font-weight: normal;
-      font-size: 12px;
     }
-    .site-nav--active:nth-of-type(2):after {
+    #SiteNav > li:nth-of-type(2):after{
       content: "商品一覧";
+      font-size: 0.8em;
       font-weight: normal;
-      font-size: 12px;
     }
-    .site-nav--active:nth-of-type(3){
-/*             margin-right: calc(100% - 700px); */
-      margin-right: 10%;
-    }
-    .site-nav--active:nth-of-type(3):after {
+    #SiteNav > li:nth-of-type(3):after{
       content: "導入事例";
+      font-size: 0.8em;
       font-weight: normal;
-      font-size: 12px;
     }
-    .site-nav--active:nth-of-type(4):after {
+    #SiteNav > li:nth-of-type(4):after{
       content: "WAAKについて";
+      font-size: 0.8em;
       font-weight: normal;
-      font-size: 12px;
     }
-    .site-nav--active:nth-of-type(5):after {
+    #SiteNav > li:nth-of-type(4){
+      margin-left: 10%;
+    }
+    #SiteNav > li:nth-of-type(5):after{
       content: "購入サポート";
+      font-size: 0.8em;
       font-weight: normal;
-      font-size: 12px;
     }
-    .site-nav--active:nth-of-type(6):after {
-      content: "  ワアク・フォー・ビズ";
+    #SiteNav > li:nth-of-type(6):after{
+      content: "ワアク・フォー・ビズ";
+      font-size: 0.8em;
       font-weight: normal;
-      font-size: 12px;
     }
     .site-header__icons{
       width:50px;
@@ -558,10 +574,9 @@
   }
   @media screen and (max-width: 749px) {
     .site-header__cart{
-      display:none;
-    }
+    display:none;}
   }
-      </style>
+</style>
 <!-- ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃　　　　　　サイトヘッダー＿NAV　　　　　＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ -->
 
 {%- endunless -%}
