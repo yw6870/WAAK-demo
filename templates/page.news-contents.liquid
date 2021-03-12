@@ -1,21 +1,14 @@
 <div class="page-width">
+  {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
+  {% assign menu = linklists.news-link-list %}
+  <a href="/">Home </a>
+  {% for link in menu.links %}
+    {% if link.active or link.child_active %} <a href={{link.url}}>  >  {{ link.title }}</a> {% endif %}
+  {% endfor %}
+   <a href={{page.url}}>  >  {{ page.title }}</a>
+  {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-
-    {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
-    {% assign menu = linklists.news-link-list %}
-    <a href="/">Home </a>
-    {% for link in menu.links %}
-        {% if link.active or link.child_active %} <a href={{link.url}}> > {{ link.title }}</a> {% endif %}
-      {% for sub_link in link.links %}
-        {% if sub_link.active or sub_link.child_active %}> <a href={{sub_link.url}} > {{ sub_link.title }}</a> {% endif %}
-        {% for sub_sub_link in sub_link.links %}
-          {% if sub_sub_link.active %} > <a href={{sub_sub_link.url}} > {{ sub_sub_link.title }}</a> {% endif %}
-        {% endfor %}
-      {% endfor %}
-    {% endfor %}
-    {% comment %}   パンクズ（リンクリスト）    ################################################ {% endcomment %}
-
       <div class="section-header text-center">
         <h1>{{ page.title }}</h1>
       </div>
