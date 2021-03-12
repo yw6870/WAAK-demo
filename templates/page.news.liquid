@@ -5,7 +5,7 @@
   {% assign menu = linklists.news-link-list %}
   <a href="/">Home </a>
   {% for link in menu.links %}
-      {% if link.active or link.child_active %} <a href={{link.url}}> > {{ link.title }}</a> {% endif %}
+      {% if link.active or link.child_active %} <a href={{link.url}}><span> 　>　 </span>{{ link.title }}</a> {% endif %}
       {% if sub_link.active or sub_link.child_active %}> <a href={{sub_link.url}} > {{ sub_link.title }}</a> {% endif %}
   {% endfor %}
   </div>
@@ -34,29 +34,41 @@
         {% comment %} ####     リンクリスト   ######################################################## {% endcomment %}
         {% comment %} {{ page.content }} {% endcomment %}
       </div>
+      <div class="pagination">
+        <p><　　pagination　　></p>
+      </div>
     </div>
   </div>
 </div>
 <style>
   @media screen and (min-width: 750px) {
     .breadcrumb {
+      margin-top: 50px;
+      margin-bottom: 60px;
       font-size: 0.5em;
+    }
+    .breadcrumb span {
+      color:rgb(164, 164, 164);
     }
     .section-title {
       font-size:1.8em;
     }
     .rte {
-      border-top: 1px solid gray;
+      border-top: 2px solid rgb(216, 216, 216);
     }
     .news-content {
       line-height: 1em;
       margin: 0;
       font-size :1.2em;
       padding : 1.5em 0;
-      border-bottom: 1px solid gray;
+      border-bottom: 2px solid rgb(216, 216, 216);
     }
     .news-content a {
-      border:none;
+      border-bottom:none !important;
+    }
+    .pagination {
+      text-align :center;
+      margin-bottom: 50px;
     }
   }
   @media screen and (max-width: 749px) {
