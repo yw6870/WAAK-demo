@@ -9,9 +9,9 @@
       {% for link in menu.links %}
         {% comment %} #########　if文（page.title = page.link） {% endcomment %}
         {% if　link.title == page.title %}
-          <li><span class="current-page">|</span>
+          <li class="current-page"><span>|</span>
         {% else %}
-          <li><span class="not-current-page">|</span>
+          <li class="not-current-page"><span>|</span>
         {% endif %}
         {% comment %} #########　if文（page.title = page.link） {% endcomment %}
           {% comment %} ######## case文（アイコンを変える） {% endcomment %}
@@ -156,11 +156,11 @@
       line-height: 3em;
       border-bottom: none;
     }
-    .current-page {
+    .current-page span {
       font-weight: bold;
       font-size: 2.5em;
     }
-    .not-current-page {
+    .not-current-page span {
       font-weight: bold;
       font-size: 2.5em;
       color: white;
@@ -202,6 +202,77 @@
     }
   }
   @media screen and (max-width: 749px) {
-    
+    .guide-title {
+      padding-left: 10px;
+      line-height: 2em;
+      font-weight: bold;
+      background: black;
+      color: white;
+      margin-bottom: 50px;
+    }
+    .guide-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .guide-menu li{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border: 1px solid black;
+      width: 47%;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+    .current-page {
+      background: black;
+    }
+    .current-page a {
+      color: white!important;
+    }
+    .guide-menu li span {
+      display:none;
+    }
+     .guide-menu li img {
+       height: 50px;
+     }
+     .guide-menu li:last-child {
+       margin-bottom: 50px;
+     }
+     .guide-page-title {
+      font-size: 1.5em;
+      line-height: 2em;
+      display: block;
+      border-bottom: 1px solid black;
+      margin-bottom: 30px;
+    }
+    .guide-page-title img {
+      margin-right: 20px;
+    }
+    .guide-content {
+      margin-bottom: 30px;
+    }
+    .sub-title {
+      margin-bottom: 10px!important;
+      padding-bottom: 10px;
+      border-bottom: 1px dotted black;
+    }
+    table th,table td {
+      display: block;
+      width: 100%;
+      line-height: 1.5em;
+      padding-left: 0;
+      border: 1px solid black;
+      border: none;
+    }
+    table td {
+      border-bottom: 1px dotted black;
+    }
+    .guide-content span {
+      font-size: 0.7em;
+    }
+    .sub-title:last-child{
+      border-bottom: none!important;
+    }
   }
 </style>
