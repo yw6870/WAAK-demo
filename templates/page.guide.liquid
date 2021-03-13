@@ -1,5 +1,201 @@
 {% case page.title %}
   {% when "ご注文について" %}
+    <div class="page-width">
+      <div class="guide-title">ご利用ガイド</div>
+      <div class="guide-contents">
+
+        <div class="contents-left">
+          <ul class="guide-menu">
+          {% assign menu = linklists.guide-menu %}
+          {% for link in menu.links %}
+            {% if　link.title == page.title %}
+              <li class="current-page"><span>|</span>
+            {% else %}
+              <li class="not-current-page"><span>|</span>
+            {% endif %}
+              {% case link.title %}
+                {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+              {% endcase %}
+          {% endfor %}
+          </ul>
+        </div>
+
+        <div class="contents-right">
+          <div class="section-header">
+            {% case page.title %}
+              {% when 'ご注文について' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お届けについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お支払いについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'サービスについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when '返品・キャンセルについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+            {% endcase %}
+          </div>
+
+          <div class="rte">
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            {{ page.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <style>
+      @media screen and (min-width: 750px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px  0;
+        }
+        .guide-contents {
+          display: flex;
+          justify-content:space-between;
+        }
+        .contents-left {
+          height:auto;
+          width: 250px;
+        }
+        .guide-menu {
+        }
+        .guide-menu li {
+          display:flex;
+          line-height: 3em;
+          font-size: 0.9em;
+          font-weight: bold;
+          border-bottom: 1px solid black;
+        }
+        .guide-menu li a {
+          display:flex;
+        }
+        .guide-menu li img {
+          margin:auto 10px;
+        }
+        .guide-menu li:last-child {
+          line-height: 3em;
+          border-bottom: none;
+        }
+        .current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+        }
+        .not-current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+          color: white;
+        }
+        .contents-right {
+          height:auto;
+          width: calc(95% - 250px);
+        }
+        .guide-page-title {
+          font-size: 1.5em;
+          font-weight: bold;
+          line-height: 2em;
+          text-align: left;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 20px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+        .guide-content p {
+          line-height:2em;
+        }
+      }
+      @media screen and (max-width: 749px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px 0;
+        }
+        .guide-menu {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        .guide-menu li{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          border: 1px solid black;
+          width: 47%;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+        .guide-menu li a {
+          display:flex;
+          width: 100%;
+          align-items: center;
+        }
+        .guide-menu li p{
+          font-size: 0.8em;
+        }
+        .current-page {
+          background: black;
+        }
+        .current-page a p {
+          color: white!important;
+        }
+        .guide-menu li span {
+          display:none;
+        }
+          .guide-menu li img {
+            margin:auto 10px;
+          }
+          .guide-menu li:last-child {
+            margin-bottom: 50px;
+          }
+          .guide-page-title {
+          font-size: 1.5em;
+          line-height: 2em;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 30px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+      }
+    </style>
   {% when "お届けについて" %}
     <div class="page-width">
       <div class="guide-title">ご利用ガイド</div>
@@ -280,6 +476,594 @@
       }
     </style>
   {% when "お支払いについて" %}
+    <div class="page-width">
+      <div class="guide-title">ご利用ガイド</div>
+      <div class="guide-contents">
+
+        <div class="contents-left">
+          <ul class="guide-menu">
+          {% assign menu = linklists.guide-menu %}
+          {% for link in menu.links %}
+            {% if　link.title == page.title %}
+              <li class="current-page"><span>|</span>
+            {% else %}
+              <li class="not-current-page"><span>|</span>
+            {% endif %}
+              {% case link.title %}
+                {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+              {% endcase %}
+          {% endfor %}
+          </ul>
+        </div>
+
+        <div class="contents-right">
+          <div class="section-header">
+            {% case page.title %}
+              {% when 'ご注文について' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お届けについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お支払いについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'サービスについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when '返品・キャンセルについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+            {% endcase %}
+          </div>
+
+          <div class="rte">
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            {{ page.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <style>
+      @media screen and (min-width: 750px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px  0;
+        }
+        .guide-contents {
+          display: flex;
+          justify-content:space-between;
+        }
+        .contents-left {
+          height:auto;
+          width: 250px;
+        }
+        .guide-menu {
+        }
+        .guide-menu li {
+          display:flex;
+          line-height: 3em;
+          font-size: 0.9em;
+          font-weight: bold;
+          border-bottom: 1px solid black;
+        }
+        .guide-menu li a {
+          display:flex;
+        }
+        .guide-menu li img {
+          margin:auto 10px;
+        }
+        .guide-menu li:last-child {
+          line-height: 3em;
+          border-bottom: none;
+        }
+        .current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+        }
+        .not-current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+          color: white;
+        }
+        .contents-right {
+          height:auto;
+          width: calc(95% - 250px);
+        }
+        .guide-page-title {
+          font-size: 1.5em;
+          font-weight: bold;
+          line-height: 2em;
+          text-align: left;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 20px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+        .guide-content p {
+          line-height:2em;
+        }
+      }
+      @media screen and (max-width: 749px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px 0;
+        }
+        .guide-menu {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        .guide-menu li{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          border: 1px solid black;
+          width: 47%;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+        .guide-menu li a {
+          display:flex;
+          width: 100%;
+          align-items: center;
+        }
+        .guide-menu li p{
+          font-size: 0.8em;
+        }
+        .current-page {
+          background: black;
+        }
+        .current-page a p {
+          color: white!important;
+        }
+        .guide-menu li span {
+          display:none;
+        }
+          .guide-menu li img {
+            margin:auto 10px;
+          }
+          .guide-menu li:last-child {
+            margin-bottom: 50px;
+          }
+          .guide-page-title {
+          font-size: 1.5em;
+          line-height: 2em;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 30px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+      }
+    </style>
   {% when "サービスについて" %}
+    <div class="page-width">
+      <div class="guide-title">ご利用ガイド</div>
+      <div class="guide-contents">
+
+        <div class="contents-left">
+          <ul class="guide-menu">
+          {% assign menu = linklists.guide-menu %}
+          {% for link in menu.links %}
+            {% if　link.title == page.title %}
+              <li class="current-page"><span>|</span>
+            {% else %}
+              <li class="not-current-page"><span>|</span>
+            {% endif %}
+              {% case link.title %}
+                {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+              {% endcase %}
+          {% endfor %}
+          </ul>
+        </div>
+
+        <div class="contents-right">
+          <div class="section-header">
+            {% case page.title %}
+              {% when 'ご注文について' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お届けについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お支払いについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'サービスについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when '返品・キャンセルについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+            {% endcase %}
+          </div>
+
+          <div class="rte">
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            {{ page.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <style>
+      @media screen and (min-width: 750px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px  0;
+        }
+        .guide-contents {
+          display: flex;
+          justify-content:space-between;
+        }
+        .contents-left {
+          height:auto;
+          width: 250px;
+        }
+        .guide-menu {
+        }
+        .guide-menu li {
+          display:flex;
+          line-height: 3em;
+          font-size: 0.9em;
+          font-weight: bold;
+          border-bottom: 1px solid black;
+        }
+        .guide-menu li a {
+          display:flex;
+        }
+        .guide-menu li img {
+          margin:auto 10px;
+        }
+        .guide-menu li:last-child {
+          line-height: 3em;
+          border-bottom: none;
+        }
+        .current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+        }
+        .not-current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+          color: white;
+        }
+        .contents-right {
+          height:auto;
+          width: calc(95% - 250px);
+        }
+        .guide-page-title {
+          font-size: 1.5em;
+          font-weight: bold;
+          line-height: 2em;
+          text-align: left;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 20px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+        .guide-content p {
+          line-height:2em;
+        }
+      }
+      @media screen and (max-width: 749px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px 0;
+        }
+        .guide-menu {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        .guide-menu li{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          border: 1px solid black;
+          width: 47%;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+        .guide-menu li a {
+          display:flex;
+          width: 100%;
+          align-items: center;
+        }
+        .guide-menu li p{
+          font-size: 0.8em;
+        }
+        .current-page {
+          background: black;
+        }
+        .current-page a p {
+          color: white!important;
+        }
+        .guide-menu li span {
+          display:none;
+        }
+          .guide-menu li img {
+            margin:auto 10px;
+          }
+          .guide-menu li:last-child {
+            margin-bottom: 50px;
+          }
+          .guide-page-title {
+          font-size: 1.5em;
+          line-height: 2em;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 30px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+      }
+    </style>
   {% when "返品・キャンセルについて" %}
+    <div class="page-width">
+      <div class="guide-title">ご利用ガイド</div>
+      <div class="guide-contents">
+
+        <div class="contents-left">
+          <ul class="guide-menu">
+          {% assign menu = linklists.guide-menu %}
+          {% for link in menu.links %}
+            {% if　link.title == page.title %}
+              <li class="current-page"><span>|</span>
+            {% else %}
+              <li class="not-current-page"><span>|</span>
+            {% endif %}
+              {% case link.title %}
+                {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+                {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#"><p>{{ link.title }}</p></a></li>
+              {% endcase %}
+          {% endfor %}
+          </ul>
+        </div>
+
+        <div class="contents-right">
+          <div class="section-header">
+            {% case page.title %}
+              {% when 'ご注文について' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お届けについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'お支払いについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when 'サービスについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+              {% when '返品・キャンセルについて' %}
+                <h2 class="guide-page-title"><img src="#"><p>{{ page.title }}</p></h2>
+            {% endcase %}
+          </div>
+
+          <div class="rte">
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            <div class="guide-content">
+            </div>
+            {{ page.content }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <style>
+      @media screen and (min-width: 750px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px  0;
+        }
+        .guide-contents {
+          display: flex;
+          justify-content:space-between;
+        }
+        .contents-left {
+          height:auto;
+          width: 250px;
+        }
+        .guide-menu {
+        }
+        .guide-menu li {
+          display:flex;
+          line-height: 3em;
+          font-size: 0.9em;
+          font-weight: bold;
+          border-bottom: 1px solid black;
+        }
+        .guide-menu li a {
+          display:flex;
+        }
+        .guide-menu li img {
+          margin:auto 10px;
+        }
+        .guide-menu li:last-child {
+          line-height: 3em;
+          border-bottom: none;
+        }
+        .current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+        }
+        .not-current-page span {
+          font-weight: bold;
+          font-size: 2.5em;
+          color: white;
+        }
+        .contents-right {
+          height:auto;
+          width: calc(95% - 250px);
+        }
+        .guide-page-title {
+          font-size: 1.5em;
+          font-weight: bold;
+          line-height: 2em;
+          text-align: left;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 20px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+        .guide-content p {
+          line-height:2em;
+        }
+      }
+      @media screen and (max-width: 749px) {
+        .guide-title {
+          padding-left: 10px;
+          line-height: 2em;
+          font-weight: bold;
+          background: black;
+          color: white;
+          margin: 50px 0;
+        }
+        .guide-menu {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        .guide-menu li{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          border: 1px solid black;
+          width: 47%;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+        .guide-menu li a {
+          display:flex;
+          width: 100%;
+          align-items: center;
+        }
+        .guide-menu li p{
+          font-size: 0.8em;
+        }
+        .current-page {
+          background: black;
+        }
+        .current-page a p {
+          color: white!important;
+        }
+        .guide-menu li span {
+          display:none;
+        }
+          .guide-menu li img {
+            margin:auto 10px;
+          }
+          .guide-menu li:last-child {
+            margin-bottom: 50px;
+          }
+          .guide-page-title {
+          font-size: 1.5em;
+          line-height: 2em;
+          display: block;
+          border-bottom: 1px solid black;
+          margin-bottom: 30px;
+          display:flex;
+        }
+        .guide-page-title img {
+          margin: auto 10px;
+        }
+        .section-header h4 {
+          font-weight: bold;
+          line-height: 3em;
+        }
+        .guide-content {
+          margin-bottom: 60px;
+        }
+      }
+    </style>
 {% endcase %}
