@@ -16,11 +16,11 @@
         {% comment %} #########　if文（page.title = page.link） {% endcomment %}
           {% comment %} ######## case文（アイコンを変える） {% endcomment %}
           {% case link.title %}
-            {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#" alt="（カート）">{{ link.title }}</a></li>
-            {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#" alt="（車）">{{ link.title }}</a></li>
-            {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#" alt="（カード）">{{ link.title }}</a></li>
-            {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#" alt="（工具）">{{ link.title }}</a></li>
-            {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#" alt="（矢印）">{{ link.title }}</a></li>
+            {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#">{{ link.title }}</a></li>
+            {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#">{{ link.title }}</a></li>
+            {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#">{{ link.title }}</a></li>
+            {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#">{{ link.title }}</a></li>
+            {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#">{{ link.title }}</a></li>
           {% endcase %}
           {% comment %} ######## case文（アイコンを変える） {% endcomment %}
       {% endfor %}
@@ -31,13 +31,17 @@
     <div class="contents-right">
       <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
         <div class="section-header text-center">
-          <h1>{{ page.title }}</h1>
-          {% case link.title %}
-            {% when 'ご注文について' %}<a href="{{ link.url }}"><img src="#" alt="カート">{{ link.title }}</a></li>
-            {% when 'お届けについて' %}<a href="{{ link.url }}"><img src="#" alt="車">{{ link.title }}</a></li>
-            {% when 'お支払いについて' %}<a href="{{ link.url }}"><img src="#" alt="カード">{{ link.title }}</a></li>
-            {% when 'サービスについて' %}<a href="{{ link.url }}"><img src="#" alt="工具">{{ link.title }}</a></li>
-            {% when '返品・キャンセルについて' %}<a href="{{ link.url }}"><img src="#" alt="矢印">{{ link.title }}</a></li>
+          {% case page.title %}
+            {% when 'ご注文について' %}
+              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
+            {% when 'お届けについて' %}
+              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
+            {% when 'お支払いについて' %}
+              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
+            {% when 'サービスについて' %}
+              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
+            {% when '返品・キャンセルについて' %}
+              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
           {% endcase %}
         </div>
 
@@ -66,13 +70,14 @@
     }
     .contents-left {
       height:800px;
-      width: 30%;
+      min-width: 200px;
+      width: 25%;
     }
     .guide-menu {
-      border: none;
     }
     .guide-menu li {
       line-height: 3em;
+      font-size: 0.8em;
       border-bottom: 1px solid black;
     }
     .current-page-li {
@@ -94,7 +99,12 @@
     .contents-right {
       border:1px solid black;
       height:800px;
-      width: 65%;
+      width: 75%;
+    }
+    .guide-page-title {
+      font-size: 2em;
+      display: block;
+      border-bottom: 1px solid black;
     }
   }
   @media screen and (max-width: 749px) {
