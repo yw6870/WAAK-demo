@@ -29,25 +29,77 @@
   {% comment %} ############## リンクリスト（ガイドメニュー） ########################################### {% endcomment %}
 
     <div class="contents-right">
-      <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-        <div class="section-header text-center">
-          {% case page.title %}
-            {% when 'ご注文について' %}
-              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
-            {% when 'お届けについて' %}
-              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
-            {% when 'お支払いについて' %}
-              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
-            {% when 'サービスについて' %}
-              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
-            {% when '返品・キャンセルについて' %}
-              <h1 class="guide-page-title"><img src="#">{{ page.title }}</h1>
-          {% endcase %}
-        </div>
+      <div class="section-header">
+        {% case page.title %}
+          {% when 'ご注文について' %}
+            <h2 class="guide-page-title"><img src="#">{{ page.title }}</h2>
+          {% when 'お届けについて' %}
+            <h2 class="guide-page-title"><img src="#">{{ page.title }}</h2>
+          {% when 'お支払いについて' %}
+            <h2 class="guide-page-title"><img src="#">{{ page.title }}</h2>
+          {% when 'サービスについて' %}
+            <h2 class="guide-page-title"><img src="#">{{ page.title }}</h2>
+          {% when '返品・キャンセルについて' %}
+            <h2 class="guide-page-title"><img src="#">{{ page.title }}</h2>
+        {% endcase %}
+        <h4>配送方法・運送会社</h4>
+        <p>佐川急便・その他弊社指定運送会社</p>
+      </div>
 
-        <div class="rte">
-          {{ page.content }}
+      <div class="rte">
+        <div class="guide-content">
+          <h4 class="sub-title">送料</h4>
+          <table>
+            <tr>
+              <td>チェア類</td>
+              <td>九州ー関東:1500円　東北:2500円<br>北海道:3000円　沖縄:4000円</td>
+            </tr>
+            <tr>
+              <td>デスク類</td>
+              <td>九州ー関東:3300円　東北:4500円<br>北海道:5500円　沖縄:7000円</td>
+            </tr>
+            <tr>
+              <td>デスク・チェアセット</td>
+              <td>九州ー関東:1500円　東北:2500円<br>北海道:3000円　沖縄:7000円</td>
+            </tr>
+          </table>
+          <span>※離島送料につきましては、別途見積もりが必要になります。<br>　ご注文後にメールにてご案内いたします。</span>
         </div>
+        <div class="guide-content">
+          <h4 class="sub-title">ご注文から出荷までの日数目安</h4>
+          <table>
+            <tr>
+              <td>在庫あり品</td>
+              <td>ご注文・カード承認後7日以内に出荷</td>
+            </tr>
+            <tr>
+              <td>受注生産品</td>
+              <td>ご注文・カード承認後に製造開始、<br>完成後に出荷（約1ヶ月）</td>
+            </tr>
+            <tr>
+              <td>メーカー直送品</td>
+              <td>ご注文・カード承認後にメーカー発注、直送・<br>宅配便業者はメーカーによって異なります。<br><small>（弊社契約の業者以外でのお届けになる場合もございます。）</small></td>
+            </tr>
+          </table>
+        </div>
+        <div class="guide-content">
+          <h4 class="sub-title">集荷からお届けまでの日数目安</h4>
+          <table>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        {{ page.content }}
       </div>
     </div>
   </div>
@@ -69,9 +121,8 @@
       justify-content:space-between;
     }
     .contents-left {
-      height:800px;
-      min-width: 200px;
-      width: 25%;
+      height:auto;
+      width: 250px;
     }
     .guide-menu {
     }
@@ -80,8 +131,8 @@
       font-size: 0.8em;
       border-bottom: 1px solid black;
     }
-    .current-page-li {
-      border-bottom: 2px solid black!important;
+    .guide-menu li img {
+      margin:0 20px;
     }
     .guide-menu li:last-child {
       line-height: 3em;
@@ -97,14 +148,32 @@
       color: white;
     }
     .contents-right {
-      border:1px solid black;
-      height:800px;
-      width: 75%;
+      height:auto;
+      width: calc(95% - 250px);
     }
     .guide-page-title {
-      font-size: 2em;
+      font-size: 1.5em;
+      line-height: 2em;
+      text-align: left;
       display: block;
       border-bottom: 1px solid black;
+      margin-bottom: 50px;
+    }
+    .guide-page-title img {
+      margin-right: 20px;
+    }
+    .guide-content {
+      margin-bottom: 60px;
+    }
+    .guide-content span {
+      font-size: 0.8em;
+    }
+    table td {
+      line-height: 2em;
+      padding-left: 0;
+      border: 1px solid black;
+      border-right: none;
+      border-left: none;
     }
   }
   @media screen and (max-width: 749px) {
