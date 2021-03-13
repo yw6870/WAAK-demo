@@ -51,15 +51,15 @@
           <h4 class="sub-title">送料</h4>
           <table>
             <tr>
-              <td>チェア類</td>
+              <th>チェア類</th>
               <td>九州ー関東:1500円　東北:2500円<br>北海道:3000円　沖縄:4000円</td>
             </tr>
             <tr>
-              <td>デスク類</td>
+              <th>デスク類</th>
               <td>九州ー関東:3300円　東北:4500円<br>北海道:5500円　沖縄:7000円</td>
             </tr>
             <tr>
-              <td>デスク・チェアセット</td>
+              <th>デスク・チェアセット</th>
               <td>九州ー関東:1500円　東北:2500円<br>北海道:3000円　沖縄:7000円</td>
             </tr>
           </table>
@@ -69,16 +69,20 @@
           <h4 class="sub-title">ご注文から出荷までの日数目安</h4>
           <table>
             <tr>
-              <td>在庫あり品</td>
+              <th>在庫あり品</th>
               <td>ご注文・カード承認後7日以内に出荷</td>
             </tr>
             <tr>
-              <td>受注生産品</td>
+              <th>受注生産品</th>
               <td>ご注文・カード承認後に製造開始、<br>完成後に出荷（約1ヶ月）</td>
             </tr>
             <tr>
-              <td>メーカー直送品</td>
+              <th>メーカー直送品</th>
               <td>ご注文・カード承認後にメーカー発注、直送・<br>宅配便業者はメーカーによって異なります。<br><small>（弊社契約の業者以外でのお届けになる場合もございます。）</small></td>
+            </tr>
+            <tr>
+              <th>メーカー発注品</th>
+              <td>ご注文・カード承認後にメーカー発注、<br>弊社（九州）倉庫より出荷</td>
             </tr>
           </table>
         </div>
@@ -86,18 +90,32 @@
           <h4 class="sub-title">集荷からお届けまでの日数目安</h4>
           <table>
             <tr>
-              <td></td>
-              <td></td>
+              <th>九州</th>
+              <td>2日〜6日</td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
+              <th>中国・四国・関西</th>
+              <td>2日〜9日</td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
+              <th>中部・関東</th>
+              <td>3日〜9日</td>
+            </tr>
+            <tr>
+              <th>東北</th>
+              <td>4日〜10日</td>
+            </tr>
+            <tr>
+              <th>北海道</th>
+              <td>5日〜14日</td>
             </tr>
           </table>
+          <span style="padding-bottom: 30px;">※沖縄・離島はお問合せください。</span>
+          <p>上記はあくまで目安となります。<br>ご購入商品によりお届けまでの日数は異なります。</p>
+        </div>
+        <div class="guide-content">
+          <h4 class="sub-title">日時指定</h4>
+          <p>日時指定不可の商品もございます。<br>ご希望がございます場合は、弊社へお問い合せいただけますよう<br>お願いいたします。</p>
         </div>
         {{ page.content }}
       </div>
@@ -166,10 +184,17 @@
       margin-bottom: 60px;
     }
     .guide-content span {
+      display: block;
       font-size: 0.8em;
     }
-    table td {
-      line-height: 2em;
+    table {
+      width: 100%;
+    }
+    table th {
+      width: 200px;
+    }
+    table th,table td {
+      line-height: 1.5em;
       padding-left: 0;
       border: 1px solid black;
       border-right: none;
