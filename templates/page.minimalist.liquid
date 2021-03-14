@@ -7,7 +7,7 @@
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
       <div class="first-section section-header text-center">
         {% comment %} <h1>{{ page.title }}</h1> {% endcomment %}
-        <h1　class="h1-text">コピーが入ります<br>コピーが入ります。</h1>
+        <h1 class="h1-text">コピーが入ります<br>コピーが入ります。</h1>
       </div>
 
       <div class="rte">
@@ -54,11 +54,9 @@
     }
     .minimalist-header img{
     }
-    .first-section h1 {
-      font-size: 1em;
-    }
-    .first-section {
-      font-size: 0.9em;
+    .h1-text {
+      font-size: 2em;
+      font-weight:bold;
     }
     .rte {
       width: 500px;
@@ -163,19 +161,19 @@
     .minimalist-header {
       background-color: lightgray;
       margin-bottom: 100px;
-      height: 600px;
+      height: 300px;
     }
     .minimalist-header img{
     }
-    .first-section h1 {
-      font-size: 3em;
+    .h1-text {
+      font-size: 2em;
       font-weight:bold;
     }
     .first-section {
       font-size: 0.9em;
     }
     .rte {
-      width: 500px;
+      width: 100%;
       text-align: center;
       margin: 0 auto;
       font-size: 1em;
@@ -184,15 +182,16 @@
     #second-section {
       margin-bottom: 100px;
       display: grid;
-      grid-template-rows: 300px 300px 300px 500px;
-      row-gap: 50px;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      column-gap: 50px;
+      grid-template-rows: 500px 250px 250px 150px 150px;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 20px;
+      column-gap: 20px;
       grid-template-areas:
-        "areaA areaA areaA areaB areaB areaB"
-        "areaA areaA areaA areaC areaC areaC"
-        "areaD areaD areaE areaE areaE areaE"
-        "areaF areaF areaF areaF areaF areaF";
+        "areaA areaA"
+        "areaB areaB"
+        "areaC areaC"
+        "areaD areaE"
+        "areaF areaF";
     }
     #img-A {
       grid-area: areaA;
@@ -232,7 +231,7 @@
       height: 300px;
     }
     .fourth-section {
-      margin: 100px auto;
+      margin-top: 100px auto 20px auto;
       height: auto;
       width: 100%;
     }
@@ -242,29 +241,26 @@
       width: 100%;
     }
     .fourth-section-contents {
-      display: flex;
-      justify-content: space-between;
       width: 100%;
-      height: 200px;
+      height: auto;
     }
     .fourth-section-contents h2 {
       display: block;
-      padding: 50px;
-      width: 45%;
+      margin-top: 40px;
+      width: 100%;
       line-height: 1.5em;
     }
     .fourth-section-contents div {
-      padding: 50px;
-      width: 45%;
+      width: 100%;
       font-size: 0.9em;
       line-height: 1.5em;
     }
     .fourth-section-contents a {
       display:block;
-      margin: 30px 0;
+      margin: 40px auto;
       border:1px solid black;
-      width: 300px;
-      line-height: 2.5em;
+      width: 90%;
+      line-height: 3em;
       text-align: center;
     }
     .fourth-section-contents a:hover {
