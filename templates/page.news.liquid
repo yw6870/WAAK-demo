@@ -36,6 +36,35 @@
       </div>
       <div class="pagination">
         <p><　　pagination　　></p>
+        {% paginate linklists.news-link-list.links by 2 %}
+          {% for link in linklists.news-link-list.links %}
+            <!--show product details here -->
+          {% endfor %}
+        {% endpaginate %}
+
+
+        {% if paginate.next.is_link %}
+          <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+        {% endif %}
+
+        {% paginate collection.products by 2 %}
+          {% if paginate.next.is_link %}
+            <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+          {% endif %}
+
+          {% for product in collection.products %}
+            {{ paginate.current_page }}
+          {% endfor %}
+
+          {% if paginate.previous.is_link %}
+            <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+          {% endif %}
+        {% endpaginate %}
+
+        {% if paginate.previous.is_link %}
+          <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+        {% endif %}
+
       </div>
     </div>
   </div>
