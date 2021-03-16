@@ -1,26 +1,30 @@
 <div class="page-width">
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+
       {%- assign formId = 'ContactForm' -%}
       {% form 'contact', id: formId %}
+        {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
         {% if form.posted_successfully? %}
 
           <div class="section-header text-center">
             <h1>THANK YOU</h1>
             <p>お問い合せありがとうございます</p>
           </div>
+        {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
 
         {% else %}
 
+        {% comment %} #####################        送信が失敗したときの処理 {% endcomment %}
+
           <div class="section-header text-center">
-            <h1>{{ page.title }}</h1>
+            <h1>CONTACT</h1>
+            <p>お問い合わせ</p>
           </div>
 
-          {% if page.content.size > 0 %}
-            <div class="rte">
-              {{ page.content }}
-            </div>
-          {% endif %}
+          <div class="rte">
+            <p>WAAKに関するお問い合わせや採用ご希望など、すべてのお問い合わせはこちらのフォームからお受けしておりますフォーム送信後は担当者より折り返しご連絡しますので少々お待ちください。</p>
+          </div>
 
           <div class="contact-form form-vertical">
 
@@ -78,7 +82,12 @@
           </div>
 
         {% endif %}
+        {% comment %} #####################        送信が失敗したときの処理 {% endcomment %}
       {% endform %}
     </div>
   </div>
 </div>
+
+<style>
+
+</style>
