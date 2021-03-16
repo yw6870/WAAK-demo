@@ -31,52 +31,65 @@
             {{ form.errors | default_errors }}
 
             {% include 'form-status', form: form, form_id: formId %}
+            <div class="form">
+              <label for="ContactForm-contac-type">お問い合わせ種別</label>
+              <select id="ContactForm-contac-type" name="contact[お問い合わせ種別]">
+                <option>サンプル１</option>
+                <option>サンプル２</option>
+                <option>サンプル３</option>
+              </select>
+            </div>
 
-            <label for="ContactForm-contac-type">お問い合わせ種別</label>
-            <select id="ContactForm-contac-type" name="contact[お問い合わせ種別]">
-              <option>サンプル１</option>
-              <option>サンプル２</option>
-              <option>サンプル３</option>
-            </select>
+            <div class="form">
+              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
+              <input required class="required" type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="仕事　太郎">
+            </div>
 
-            <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
-            <input type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="仕事　太郎">
+            <div class="form">
+              <label for="{{ formId }}-name-furigana">フリガナ</label>
+              <input type="text" id="{{ formId }}-name-furigana" name="contact[フリガナ]" value="" placeholder="シゴト　タロウ">
+            </div>
 
-            <label for="{{ formId }}-name-furigana">フリガナ</label>
-            <input type="text" id="{{ formId }}-name-furigana" name="contact[フリガナ]" value="" placeholder="シゴト　タロウ">
+            <div class="form">
+              <label for="{{ formId }}-company-name">会社名</label>
+              <input type="text" id="{{ formId }}-company-name" name="contact[会社名]" value="" placeholder="ワアク株式会社">
+            </div>
 
-            <label for="{{ formId }}-company-name">会社名</label>
-            <input type="text" id="{{ formId }}-company-name" name="contact[会社名]" value="" placeholder="ワアク株式会社">
-
-            <label for="{{ formId }}-email">メールアドレス<span aria-hidden="true">*</span></label>
-            <input
-              type="email"
-              id="{{ formId }}-email"
-              name="contact[email]"
-              autocorrect="off"
-              autocapitalize="off"
-              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-              aria-required="true"
-              placeholder="sample@waak.space"
+            <div class="form">
+              <label for="{{ formId }}-email">メールアドレス<span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="{{ formId }}-email"
+                name="contact[email]"
+                autocorrect="off"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                placeholder="sample@waak.space"
+                {%- if form.errors contains 'email' -%}
+                  class="input--error"
+                  aria-invalid="true"
+                  aria-describedby="{{ formId }}-email-error"
+                {%- endif -%}
+                >
               {%- if form.errors contains 'email' -%}
-                class="input--error"
-                aria-invalid="true"
-                aria-describedby="{{ formId }}-email-error"
+                <span id="{{ formId}}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                </span>
               {%- endif -%}
-              >
-            {%- if form.errors contains 'email' -%}
-              <span id="{{ formId}}-email-error" class="input-error-message">
-                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                {% include 'icon-error' %}
-                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-              </span>
-            {%- endif -%}
+            </div>
 
-            <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
-            <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+            <div class="form">
+              <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+            </div>
 
-            <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
-            <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            <div class="form">
+              <label for="{{ formId }}-message">お問合せ内容</label>
+              <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
 
             <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
           </div>
@@ -89,5 +102,29 @@
 </div>
 
 <style>
-
+  @media screen and (min-width: 750px) {
+    .form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center !important;
+      padding : 25px 0;
+      border-top: 1px solid gray;
+    }
+    .form:last-child {
+      border-bottom: 1px solid lightgray;
+      margin-bottom: 50px;
+    }
+    label {
+      width: 150px;
+      margin: 0 !important;
+    }
+    input,textarea,select {
+      width: calc(95% - 150px) !important;
+      border: none;
+      margin: 0 !important;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    
+  }
 </style>
