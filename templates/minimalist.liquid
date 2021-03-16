@@ -1,0 +1,276 @@
+<div class="minimalist-header">
+  <a href="#"><img src="#" alt="ヘッダーイメージ"></a>
+</div>
+
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="first-section section-header text-center">
+        {% comment %} <h1>{{ page.title }}</h1> {% endcomment %}
+        <h1 class="h1-text">コピーが入ります<br>コピーが入ります。</h1>
+      </div>
+
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+
+  <div id="second-section">
+    <a href="#" id="img-A"><img src="#" alt="サンプル１"></a>
+    <a href="#" id="img-B"><img src="#" alt="サンプル２"></a>
+    <a href="#" id="img-C"><img src="#" alt="サンプル３"></a>
+    <a href="#" id="img-D"><img src="#" alt="サンプル４"></a>
+    <a href="#" id="img-E"><img src="#" alt="サンプル５"></a>
+    <a href="#" id="img-F"><img src="#" alt="サンプル６"></a>
+  </div>
+
+  <div class="third-section">
+  {% section 'collection-template' %}
+    <div class="third-section-content">collection</div>
+    <div class="third-section-content">collection</div>
+    <div class="third-section-content">collection</div>
+  </div>
+
+  <div class="fourth-section">
+    <div class="fourth-section-img">
+      <a href="#"><img src="#" alt="フッターイメージ"></a>
+    </div>
+    <div class="fourth-section-contents">
+      <h2>テキストテキストテキストテキストテキストテキストテキスト</h2>
+      <div>
+        <p>テキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <a href="#">VIEW MORE</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media screen and (min-width: 750px) {
+    .minimalist-header {
+      background-color: lightgray;
+      margin-bottom: 100px;
+      height: 600px;
+    }
+    .minimalist-header img{
+    }
+    .h1-text {
+      font-size: 2em;
+      font-weight:bold;
+    }
+    .rte {
+      width: 500px;
+      text-align: center;
+      margin: 0 auto;
+      font-size: 1em;
+      padding-bottom: 100px;
+    }
+    #second-section {
+      margin-bottom: 100px;
+      display: grid;
+      grid-template-rows: 300px 300px 300px 500px;
+      row-gap: 50px;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      column-gap: 50px;
+      grid-template-areas:
+        "areaA areaA areaA areaB areaB areaB"
+        "areaA areaA areaA areaC areaC areaC"
+        "areaD areaD areaE areaE areaE areaE"
+        "areaF areaF areaF areaF areaF areaF";
+    }
+    #img-A {
+      grid-area: areaA;
+      background:lightgray;
+    }
+    #img-B {
+      grid-area: areaB;
+      background:lightgray;
+    }
+    #img-C {
+      grid-area: areaC;
+      background:lightgray;
+    }
+    #img-D {
+      grid-area: areaD;
+      background:lightgray;
+    }
+    #img-E {
+      grid-area: areaE;
+      background:lightgray;
+    }
+    #img-F {
+      grid-area: areaF;
+      background:lightgray;
+    }
+    .third-section {
+      width: 100%;
+      height: auto;
+      margin-bottom: 100px;
+    }
+    .third-section-content {
+      border: 1px solid black;
+      padding: 100px 0;
+      font-size: 3em;
+      margin-bottom: 50px;
+      width: 100%;
+      height: 300px;
+    }
+    .fourth-section {
+      margin: 100px auto;
+      height: auto;
+      width: 100%;
+    }
+    .fourth-section-img {
+      background:lightgray;
+      height: 300px;
+      width: 100%;
+    }
+    .fourth-section-contents {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 200px;
+    }
+    .fourth-section-contents h2 {
+      display: block;
+      padding: 50px;
+      width: 45%;
+      line-height: 1.5em;
+    }
+    .fourth-section-contents div {
+      padding: 50px;
+      width: 45%;
+      font-size: 0.9em;
+      line-height: 1.5em;
+    }
+    .fourth-section-contents a {
+      display:block;
+      margin: 30px 0;
+      border:1px solid black;
+      width: 300px;
+      line-height: 2.5em;
+      text-align: center;
+    }
+    .fourth-section-contents a:hover {
+      transition: 0.5s;
+      color: white;
+      background: black;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .minimalist-header {
+      background-color: lightgray;
+      margin-bottom: 70px;
+      height: 300px;
+    }
+    .minimalist-header img{
+    }
+    .h1-text {
+      font-size: 2em;
+      font-weight:bold;
+    }
+    .first-section {
+      font-size: 0.9em;
+    }
+    .rte {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      font-size: 1em;
+      padding-bottom: 100px;
+    }
+    #second-section {
+      margin-bottom: 100px;
+      display: grid;
+      grid-template-rows: 500px 250px 250px 150px 150px;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 20px;
+      column-gap: 20px;
+      grid-template-areas:
+        "areaA areaA"
+        "areaB areaB"
+        "areaC areaC"
+        "areaD areaE"
+        "areaF areaF";
+    }
+    #img-A {
+      grid-area: areaA;
+      background:lightgray;
+    }
+    #img-B {
+      grid-area: areaB;
+      background:lightgray;
+    }
+    #img-C {
+      grid-area: areaC;
+      background:lightgray;
+    }
+    #img-D {
+      grid-area: areaD;
+      background:lightgray;
+    }
+    #img-E {
+      grid-area: areaE;
+      background:lightgray;
+    }
+    #img-F {
+      grid-area: areaF;
+      background:lightgray;
+    }
+    .third-section {
+      width: 100%;
+      height: auto;
+      margin-bottom: 100px;
+    }
+    .third-section-content {
+      border: 1px solid black;
+      padding: 100px 0;
+      font-size: 3em;
+      margin-bottom: 50px;
+      width: 100%;
+      height: 300px;
+    }
+    .fourth-section {
+      margin-top: 100px auto 20px auto;
+      height: auto;
+      width: 100%;
+    }
+    .fourth-section-img {
+      background:lightgray;
+      height: 300px;
+      width: 100%;
+    }
+    .fourth-section-contents {
+      width: 100%;
+      height: auto;
+    }
+    .fourth-section-contents h2 {
+      display: block;
+      margin: 40px auto;
+      width: 100%;
+      line-height: 1.5em;
+      font-size: 1.5em;
+      font-weight:bold;
+    }
+    .fourth-section-contents div {
+      width: 100%;
+      font-size: 0.9em;
+      line-height: 1.5em;
+    }
+    .fourth-section-contents a {
+      display:block;
+      margin: 40px auto;
+      border:1px solid black;
+      width: 90%;
+      line-height: 3em;
+      text-align: center;
+      font-weight:bold;
+    }
+    .fourth-section-contents a:hover {
+      transition: 0.5s;
+      color: white;
+      background: black;
+    }
+  }
+</style>
