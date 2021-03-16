@@ -1,28 +1,30 @@
 <div class="page-width">
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      {%- assign formId = 'ContactForm' -%}
+      {% form 'contact', id: formId %}
+        {% if form.posted_successfully? %}
 
-      {% if form.posted_successfully? %}
-
-          Comment posted successfully!
-          
-      {% else %}
-
-        <div class="section-header text-center">
-          <h1>{{ page.title }}</h1>
-        </div>
-
-        {% if page.content.size > 0 %}
-          <div class="rte">
-            {{ page.content }}
+          <div class="section-header text-center">
+            <h1>THANK YOU</h1>
+            <p>お問い合せありがとうございます</p>
           </div>
-        {% endif %}
 
-        <div class="contact-form form-vertical">
-          {%- assign formId = 'ContactForm' -%}
-          {% form 'contact', id: formId %}
+        {% else %}
 
-          {{ form.errors | default_errors }}
+          <div class="section-header text-center">
+            <h1>{{ page.title }}</h1>
+          </div>
+
+          {% if page.content.size > 0 %}
+            <div class="rte">
+              {{ page.content }}
+            </div>
+          {% endif %}
+
+          <div class="contact-form form-vertical">
+
+            {{ form.errors | default_errors }}
 
             {% include 'form-status', form: form, form_id: formId %}
 
@@ -73,11 +75,10 @@
             <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
 
             <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+          </div>
 
-          {% endform %}
-        </div>
-
-      {% endif %}
+        {% endif %}
+      {% endform %}
     </div>
   </div>
 </div>
