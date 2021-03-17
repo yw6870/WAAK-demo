@@ -28,7 +28,7 @@
             <p>お問い合わせ</p>
           </div>
 
-          <div class="contact-form form-vertical" id="contactForm">
+          <div class="contact-page form-vertical" id="contactPage">
           {% comment %} ###############################      入力画面       ################# {% endcomment %}
 
             <div class="rte">
@@ -115,7 +115,7 @@
           {% comment %} ###############################      入力画面       ################# {% endcomment %}
           </div>
 
-          <div class="confirm-form form-vertical" id="confirmForm" style="display:none;">
+          <div class="confirm-page form-vertical" id="confirmPage" style="display:none;">
           {% comment %} ###############################      確認画面       ################# {% endcomment %}
 
             <div class="contact-form-bar">
@@ -182,25 +182,25 @@
   //      onclick="ChangeDisplay('   ')"で発動
   function ChangeDisplay(Display){
     //    入力画面
-    const contactForm = document.getElementById("contactForm");
+    const contactPage = document.getElementById("contactPage");
     //    確認画面
-    const confirmForm = document.getElementById("confirmForm");
+    const confirmPage = document.getElementById("confirmPage");
 
     if(Display == "contact"){
       scrollTo(0, 0);  // 画面トップにジャンプ
-      contactForm.style.display = "none";  // 入力画面が消える
-      confirmForm.style.display = "block";  // 確認画面が出現
+      contactPage.style.display = "none";  // 入力画面が消える
+      confirmPage.style.display = "block";  // 確認画面が出現
     }else if(Display == "confirm"){
       scrollTo(0, 0);  // 画面トップにジャンプ
-      confirmForm.style.display = "none";  // 確認画面が消える
-      contactForm.style.display = "block";  // 入力画面が出現
+      confirmPage.style.display = "none";  // 確認画面が消える
+      contactPage.style.display = "block";  // 入力画面が出現
     }
   }
 </script>
 
 <style>
   @media screen and (min-width: 750px) {
-    .contact-form {
+    .contact-page {
       display: flex;
       flex-direction: column;
     }
@@ -216,23 +216,24 @@
       margin-bottom: 50px;
       background: rgb(255, 245, 245);
     }
-    .contact-form .form {
+    /* ##############  入力画面  ################### */
+    .contact-page .form {
       display: flex;
       justify-content: space-between;
       align-items: center !important;
       padding : 25px 0;
       border-bottom: 1px solid rgb(220, 220, 220);
     }
-    .contact-form .textarea-form {
+    .contact-page .textarea-form {
       border-bottom: none;
       margin-bottom: 50px;
     }
-    .contact-form label {
+    .contact-page label {
       width: 150px;
       margin: 0 !important;
       padding: 10 0;
     }
-    .contact-form .textarea-label {
+    .contact-page .textarea-label {
       line-height: 2em;
       display: block !important;
       align-self: flex-start !important;
@@ -248,8 +249,60 @@
     #{{ formId }}-message {
       line-height: 2em;
     }
+    .comfirm-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .comfirm-btn:hover {
+      transition: 0.5s;
+      background: black;
+      color: white;
+    }
+    .contact-page div p {
+      margin-bottom: 0;
+      line-height: 2em;
+      text-align: center;
+    }
+    /* ##############  入力画面  ################### */
     ::placeholder {
       color: rgb(155, 155, 155);
+    }
+    .confirm-page .form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center !important;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .confirm-page .textarea-form {
+      border-bottom: none;
+      margin-bottom: 50px;
+    }
+    .confirm-page label {
+      width: 150px;
+      margin: 0 !important;
+      padding: 10 0;
+    }
+    .confirm-page .textarea-label {
+      line-height: 2em;
+      display: block !important;
+      align-self: flex-start !important;
+    }
+    .form input, .form textarea, .form select, .confirm-form {
+      width: calc(95% - 150px) !important;
+      margin: 0 !important;
+      padding: 0 50px;;
+      line-height: 4em;
+      border: none;
+      background: rgb(255, 245, 245);
+    }
+    #{{ formId }}-message {
+      line-height: 2em;
     }
     .comfirm-btn {
       display: block;
@@ -265,7 +318,7 @@
       background: black;
       color: white;
     }
-    div p {
+    .confirm-page div p {
       margin-bottom: 0;
       line-height: 2em;
       text-align: center;
