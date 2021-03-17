@@ -125,42 +125,43 @@
             </div>
 
             <div class="form">
-              <div>お問い合わせ種別<span aria-hidden="true">*</span></div>
-              <div>お問い合わせ種別</div>
+              <div class="form-title">お問い合わせ種別<span aria-hidden="true">*</span></div>
+              <div class="input-value">お問い合わせ種別</div>
             </div>
 
             <div class="form">
-              <div>名前<span aria-hidden="true">*</span></div>
-              <div>名前</div>
+              <div class="form-title">名前<span aria-hidden="true">*</span></div>
+              <div class="input-value">名前</div>
             </div>
 
             <div class="form">
-              <div>フリガナ<span aria-hidden="true">*</span></div>
-              <div>フリガナ</div>
+              <div class="form-title">フリガナ<span aria-hidden="true">*</span></div>
+              <div class="input-value">フリガナ</div>
             </div>
 
             <div class="form">
-              <div>会社名</div>
-              <div>会社名</div>
+              <div class="form-title">会社名</div>
+              <div class="input-value">会社名</div>
             </div>
 
             <div class="form">
-              <div>メールアドレス<span aria-hidden="true">*</span></div>
-              <div>メールアドレス</div>
+              <div class="form-title">メールアドレス<span aria-hidden="true">*</span></div>
+              <div class="input-value">メールアドレス</div>
             </div>
 
             <div class="form">
-              <div>電話番号<span aria-hidden="true">*</span></div>
-              <div>電話番号</div>
+              <div class="form-title">電話番号<span aria-hidden="true">*</span></div>
+              <div class="input-value">電話番号</div>
+            </div>
+
+            <div class="form textarea-form">
+              <div class="textarea-title">お問合せ内容<span aria-hidden="true">*</span></div>
+              <div class="input-value">お問合せ内容</div>
             </div>
 
             <div class="form">
-              <div>お問合せ内容<span aria-hidden="true">*</span></div>
-              <div>お問合せ内容</div>
-            </div>
-
-            <div class="checkbox">
-              <p class="comfirm-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
+              <input type="submit" class="submit-btn" value="入力内容を送信する">
+              <p class="contact-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
             </div>
 
             <div>
@@ -200,10 +201,6 @@
 
 <style>
   @media screen and (min-width: 750px) {
-    .contact-page {
-      display: flex;
-      flex-direction: column;
-    }
     .contact-form-bar {
       width: 100%;
       display: flex;
@@ -217,6 +214,10 @@
       background: rgb(255, 245, 245);
     }
     /* ##############  入力画面  ################### */
+    .contact-page {
+      display: flex;
+      flex-direction: column;
+    }
     .contact-page .form {
       display: flex;
       justify-content: space-between;
@@ -238,10 +239,10 @@
       display: block !important;
       align-self: flex-start !important;
     }
-    .form input, .form textarea, .form select, .confirm-form {
+    .form input, .form textarea, .form select {
       width: calc(95% - 150px) !important;
       margin: 0 !important;
-      padding: 0 50px;;
+      padding: 0 50px;
       line-height: 4em;
       border: none;
       background: rgb(255, 245, 245);
@@ -255,13 +256,9 @@
       text-align: center;
       margin: 50px auto !important;
       width: 300px !important;
-      border: 1px solid black;
-      cursor: pointer;
-    }
-    .comfirm-btn:hover {
-      transition: 0.5s;
       background: black;
       color: white;
+      cursor: pointer;
     }
     .contact-page div p {
       margin-bottom: 0;
@@ -272,39 +269,49 @@
     ::placeholder {
       color: rgb(155, 155, 155);
     }
+    /* ##############  確認画面  ################### */
+    .confirm-page {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid rgb(220, 220, 220);
+      border-top: 1px solid rgb(220, 220, 220);
+    }
     .confirm-page .form {
       display: flex;
       justify-content: space-between;
       align-items: center !important;
       padding : 25px 0;
-      border-bottom: 1px solid rgb(220, 220, 220);
     }
     .confirm-page .textarea-form {
-      border-bottom: none;
-      margin-bottom: 50px;
     }
-    .confirm-page label {
+    .confirm-page .form-title {
       width: 150px;
       margin: 0 !important;
       padding: 10 0;
     }
-    .confirm-page .textarea-label {
+    .confirm-page .textarea-title {
       line-height: 2em;
       display: block !important;
       align-self: flex-start !important;
     }
-    .form input, .form textarea, .form select, .confirm-form {
+    .form .input-value  {
       width: calc(95% - 150px) !important;
       margin: 0 !important;
       padding: 0 50px;;
       line-height: 4em;
       border: none;
-      background: rgb(255, 245, 245);
     }
-    #{{ formId }}-message {
-      line-height: 2em;
+    .confirm-page .submit-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
     }
-    .comfirm-btn {
+    .confirm-page .contact-btn {
       display: block;
       line-height: 2.5em;
       text-align: center;
@@ -313,16 +320,12 @@
       border: 1px solid black;
       cursor: pointer;
     }
-    .comfirm-btn:hover {
-      transition: 0.5s;
-      background: black;
-      color: white;
-    }
     .confirm-page div p {
       margin-bottom: 0;
       line-height: 2em;
       text-align: center;
     }
+    /* ##############  確認画面  ################### */
   }
   @media screen and (max-width: 749px) {
     
