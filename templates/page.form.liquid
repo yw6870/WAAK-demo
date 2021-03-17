@@ -45,7 +45,7 @@
 
             {% include 'form-status', form: form, form_id: formId %}
             <div class="form">
-              <label for="ContactForm-contac-type">お問い合わせ種別</label>
+              <label for="ContactForm-contac-type">お問い合わせ種別<span aria-hidden="true">*</span></label>
               <select id="ContactForm-contac-type" name="contact[お問い合わせ種別]">
                 <option>サンプル１</option>
                 <option>サンプル２</option>
@@ -54,12 +54,12 @@
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
+              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}<span aria-hidden="true">*</span></label>
               <input required class="required" type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="仕事　太郎">
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-name-furigana">フリガナ</label>
+              <label for="{{ formId }}-name-furigana">フリガナ<span aria-hidden="true">*</span></label>
               <input type="text" id="{{ formId }}-name-furigana" name="contact[フリガナ]" value="" placeholder="シゴト　タロウ">
             </div>
 
@@ -100,7 +100,7 @@
             </div>
 
             <div class="form textarea-form">
-              <label class="textarea-label" for="{{ formId }}-message">お問合せ内容</label>
+              <label class="textarea-label" for="{{ formId }}-message">お問合せ内容<span aria-hidden="true">*</span></label>
               <textarea class="textarea" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
             </div>
 
@@ -146,17 +146,17 @@
 
             <div class="form">
               <div>メールアドレス<span aria-hidden="true">*</span></div>
-              <div>メールアドレス<span aria-hidden="true">*</span></div>
+              <div>メールアドレス</div>
             </div>
 
             <div class="form">
-              <div>{{ 'contact.form.phone' | t }}</label>
-              <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="080********">
+              <div>電話番号<span aria-hidden="true">*</span></div>
+              <div>電話番号</div>
             </div>
 
             <div class="form">
-              <label class="textarea-label" for="{{ formId }}-message">お問合せ内容</label>
-              <textarea class="textarea" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+              <div>お問合せ内容<span aria-hidden="true">*</span></div>
+              <div>お問合せ内容</div>
             </div>
 
             <div class="checkbox">
