@@ -83,15 +83,21 @@
 
             <div class="form">
               <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
-              <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+              <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="080********">
             </div>
 
             <div class="form">
               <label class="textarea-label" for="{{ formId }}-message">お問合せ内容</label>
-              <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+              <textarea class="textarea" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
             </div>
 
-            <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+            <input type="submit" class="comfirm-btn" value="入力内容を確認する">
+
+            <div class="form-p">
+              <p>ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
+              <p>ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;line-height: 2em;">プライバシーポリシー</a>をご参照ください。</p>
+            </div>
+
           </div>
 
         {% endif %}
@@ -103,6 +109,10 @@
 
 <style>
   @media screen and (min-width: 750px) {
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+    }
     .form {
       display: flex;
       justify-content: space-between;
@@ -120,7 +130,7 @@
       padding: 10 0;
     }
     .textarea-label {
-      height: 100%;
+      line-height: 2em;
       display: block !important;
       align-self: flex-start !important;
     }
@@ -128,11 +138,36 @@
       width: calc(95% - 150px) !important;
       margin: 0 !important;
       padding: 0 50px;;
-      line-height: 3em;
+      line-height: 4em;
       border: none;
-      background: rgb(255, 249, 249);
+      {% comment %} background: rgb(255, 245, 245); {% endcomment %}
     }
-    .btn
+    .textarea {
+      line-height: 2em;
+    }
+    ::placeholder {
+      color: rgb(160, 160, 160);
+    }
+    .comfirm-btn {
+      line-height: 2.5em;
+      text-align: center;
+      margin: 0 auto !important;
+      width: 300px !important;
+      border: 1px solid black;
+    }
+    .comfirm-btn:hover {
+      transition: 0.5s;
+      background: black;
+      color: white;
+    }
+    .form-p {
+      padding-top: 50px;
+    }
+    .form-p p {
+      margin-bottom: 0;
+      line-height: 2em;
+      text-align: center;
+    }
   }
   @media screen and (max-width: 749px) {
     
