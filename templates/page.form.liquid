@@ -22,11 +22,12 @@
             <p>お問い合わせ</p>
           </div>
 
-          <div class="rte">
-            <p>WAAKに関するお問い合わせや採用ご希望など、すべてのお問い合わせはこちらのフォームからお受けしておりますフォーム送信後は担当者より折り返しご連絡しますので少々お待ちください。</p>
-          </div>
-
           <div class="contact-form form-vertical">
+
+            <div class="rte">
+              <p>WAAKに関するお問い合わせや採用ご希望など、すべてのお問い合わせはこちらのフォームからお受けしておりますフォーム送信後は担当者より折り返しご連絡しますので少々お待ちください。</p>
+            </div>
+
             {{ form.errors | default_errors }}
 
             {% include 'form-status', form: form, form_id: formId %}
@@ -91,13 +92,13 @@
             </div>
 
             <div class="checkbox">
-              <label for="comfirm-checkbox-btn">お問合せ内容</label>
-              <input  type="checkbox" id="comfirm-checkbox-btn" area="hidden">
+              <label for="comfirm-checkbox">お問合せ内容を確認する</label>
+              <input  type="checkbox" id="comfirm-checkbox">
             </div>
 
             <div class="form-p">
-              <p>ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
-              <p>ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;line-height: 2em;">プライバシーポリシー</a>をご参照ください。</p>
+              <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
+              <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
             </div>
           </div>
 
@@ -164,8 +165,11 @@
       background: black;
       color: white;
     }
-    .checkbox label:checked {
-      display: none;
+    #comfirm-checkbox {
+      {% comment %} display: none; {% endcomment %}
+    }
+    #comfirm-checkbox:checked ~ .contact-form {
+      display: none !important;
     }
     .form-p {
       padding-top: 50px;
