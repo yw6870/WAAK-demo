@@ -27,7 +27,6 @@
           </div>
 
           <div class="contact-form form-vertical">
-
             {{ form.errors | default_errors }}
 
             {% include 'form-status', form: form, form_id: formId %}
@@ -91,14 +90,18 @@
               <textarea class="textarea" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
             </div>
 
-            <input type="submit" class="comfirm-btn" value="入力内容を確認する">
+            <div class="checkbox">
+              <label for="comfirm-checkbox-btn">お問合せ内容</label>
+              <input  type="checkbox" id="comfirm-checkbox-btn" area="hidden">
+            </div>
 
             <div class="form-p">
               <p>ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
               <p>ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;line-height: 2em;">プライバシーポリシー</a>をご参照ください。</p>
             </div>
-
           </div>
+
+        <input type="submit" class="comfirm-btn" value="入力内容を確認する">
 
         {% endif %}
         {% comment %} #####################        送信が失敗したときの処理 {% endcomment %}
@@ -148,17 +151,21 @@
     ::placeholder {
       color: rgb(160, 160, 160);
     }
-    .comfirm-btn {
+    .checkbox label {
+      display: block;
       line-height: 2.5em;
       text-align: center;
       margin: 0 auto !important;
       width: 300px !important;
       border: 1px solid black;
     }
-    .comfirm-btn:hover {
+    .checkbox label:hover {
       transition: 0.5s;
       background: black;
       color: white;
+    }
+    .checkbox label:checked {
+      display: none;
     }
     .form-p {
       padding-top: 50px;
