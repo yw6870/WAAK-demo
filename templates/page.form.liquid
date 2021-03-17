@@ -87,7 +87,7 @@
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-message">お問合せ内容</label>
+              <label class="textarea-label" for="{{ formId }}-message">お問合せ内容</label>
               <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
             </div>
 
@@ -108,21 +108,31 @@
       justify-content: space-between;
       align-items: center !important;
       padding : 25px 0;
-      border-top: 1px solid gray;
+      border-top: 1px solid rgb(220, 220, 220);
     }
     .form:last-child {
-      border-bottom: 1px solid lightgray;
+      border-bottom: 1px solid rgb(220, 220, 220);
       margin-bottom: 50px;
     }
     label {
       width: 150px;
       margin: 0 !important;
+      padding: 10 0;
+    }
+    .textarea-label {
+      height: 100%;
+      display: block !important;
+      align-self: flex-start !important;
     }
     input,textarea,select {
       width: calc(95% - 150px) !important;
-      border: none;
       margin: 0 !important;
+      padding: 0 50px;;
+      line-height: 3em;
+      border: none;
+      background: rgb(255, 249, 249);
     }
+    .btn
   }
   @media screen and (max-width: 749px) {
     
