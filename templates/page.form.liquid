@@ -7,6 +7,12 @@
         {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
         {% if form.posted_successfully? %}
 
+          <div class="contact-form-bar">
+            <div class="bar-input">入力</div>
+            <div class="bar-confirmation">確認</div>
+            <div class="bar-done" style="background:black;color:white;">完了</div>
+          </div>
+
           <div class="section-header text-center">
             <h1>THANK YOU</h1>
             <p>お問い合せありがとうございます</p>
@@ -29,6 +35,12 @@
               <p>WAAKに関するお問い合わせや採用ご希望など、すべてのお問い合わせはこちらのフォームからお受けしておりますフォーム送信後は担当者より折り返しご連絡しますので少々お待ちください。</p>
             </div>
 
+            <div class="contact-form-bar">
+              <div class="bar-input" style="background:black;color:white;">入力</div>
+              <div class="bar-confirmation">確認</div>
+              <div class="bar-done">完了</div>
+            </div>
+
             {{ form.errors | default_errors }}
 
             {% include 'form-status', form: form, form_id: formId %}
@@ -87,7 +99,7 @@
               <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="080********">
             </div>
 
-            <div class="form">
+            <div class="form textarea-form">
               <label class="textarea-label" for="{{ formId }}-message">お問合せ内容</label>
               <textarea class="textarea" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
             </div>
@@ -103,68 +115,42 @@
           {% comment %} ###############################      入力画面       ################# {% endcomment %}
           </div>
 
-          <div class="contact-form form-vertical" id="confirmForm" style="display:none;">
+          <div class="confirm-form form-vertical" id="confirmForm" style="display:none;">
           {% comment %} ###############################      確認画面       ################# {% endcomment %}
 
-            <div class="rte">
-              <p>切り替え完了</p>
-            </div>
-
-            {{ form.errors | default_errors }}
-
-            {% include 'form-status', form: form, form_id: formId %}
-            <div class="form">
-              <label for="ContactForm-contac-type">お問い合わせ種別</label>
-              <select id="ContactForm-contac-type" name="contact[お問い合わせ種別]">
-                <option>サンプル１</option>
-                <option>サンプル２</option>
-                <option>サンプル３</option>
-              </select>
+            <div class="contact-form-bar">
+              <div class="bar-input">入力</div>
+              <div class="bar-confirmation" style="background:black;color:white;">確認</div>
+              <div class="bar-done">完了</div>
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
-              <input required class="required" type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="仕事　太郎">
+              <div>お問い合わせ種別<span aria-hidden="true">*</span></div>
+              <div>お問い合わせ種別</div>
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-name-furigana">フリガナ</label>
-              <input type="text" id="{{ formId }}-name-furigana" name="contact[フリガナ]" value="" placeholder="シゴト　タロウ">
+              <div>名前<span aria-hidden="true">*</span></div>
+              <div>名前</div>
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-company-name">会社名</label>
-              <input type="text" id="{{ formId }}-company-name" name="contact[会社名]" value="" placeholder="ワアク株式会社">
+              <div>フリガナ<span aria-hidden="true">*</span></div>
+              <div>フリガナ</div>
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-email">メールアドレス<span aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="{{ formId }}-email"
-                name="contact[email]"
-                autocorrect="off"
-                autocapitalize="off"
-                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                aria-required="true"
-                placeholder="sample@waak.space"
-                {%- if form.errors contains 'email' -%}
-                  class="input--error"
-                  aria-invalid="true"
-                  aria-describedby="{{ formId }}-email-error"
-                {%- endif -%}
-                >
-              {%- if form.errors contains 'email' -%}
-                <span id="{{ formId}}-email-error" class="input-error-message">
-                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                  {% include 'icon-error' %}
-                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                </span>
-              {%- endif -%}
+              <div>会社名</div>
+              <div>会社名</div>
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+              <div>メールアドレス<span aria-hidden="true">*</span></div>
+              <div>メールアドレス<span aria-hidden="true">*</span></div>
+            </div>
+
+            <div class="form">
+              <div>{{ 'contact.form.phone' | t }}</label>
               <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="080********">
             </div>
 
@@ -177,7 +163,7 @@
               <p class="comfirm-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
             </div>
 
-            <div class="form-p">
+            <div>
               <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
               <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
             </div>
@@ -218,23 +204,35 @@
       display: flex;
       flex-direction: column;
     }
-    .form {
+    .contact-form-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .contact-form-bar div {
+      width: 33%;
+      line-height: 2em;
+      text-align: center;
+      margin-bottom: 50px;
+      background: rgb(255, 245, 245);
+    }
+    .contact-form .form {
       display: flex;
       justify-content: space-between;
       align-items: center !important;
       padding : 25px 0;
-      border-top: 1px solid rgb(220, 220, 220);
-    }
-    .form:last-child {
       border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .contact-form .textarea-form {
+      border-bottom: none;
       margin-bottom: 50px;
     }
-    label {
+    .contact-form label {
       width: 150px;
       margin: 0 !important;
       padding: 10 0;
     }
-    .textarea-label {
+    .contact-form .textarea-label {
       line-height: 2em;
       display: block !important;
       align-self: flex-start !important;
@@ -245,19 +243,19 @@
       padding: 0 50px;;
       line-height: 4em;
       border: none;
-      {% comment %} background: rgb(255, 245, 245); {% endcomment %}
+      background: rgb(255, 245, 245);
     }
     #{{ formId }}-message {
       line-height: 2em;
     }
     ::placeholder {
-      color: rgb(160, 160, 160);
+      color: rgb(155, 155, 155);
     }
     .comfirm-btn {
       display: block;
       line-height: 2.5em;
       text-align: center;
-      margin: 0 auto !important;
+      margin: 50px auto !important;
       width: 300px !important;
       border: 1px solid black;
       cursor: pointer;
@@ -267,11 +265,7 @@
       background: black;
       color: white;
     }
-
-    .form-p {
-      padding-top: 50px;
-    }
-    .form-p p {
+    div p {
       margin-bottom: 0;
       line-height: 2em;
       text-align: center;
