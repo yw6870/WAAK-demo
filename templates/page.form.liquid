@@ -22,7 +22,8 @@
             <p>お問い合わせ</p>
           </div>
 
-          <div class="contact-form form-vertical" id="contact-form">
+          <div class="contact-form form-vertical" id="contactForm">
+          {% comment %} ###############################      入力画面       ################# {% endcomment %}
 
             <div class="rte">
               <p>WAAKに関するお問い合わせや採用ご希望など、すべてのお問い合わせはこちらのフォームからお受けしておりますフォーム送信後は担当者より折り返しご連絡しますので少々お待ちください。</p>
@@ -92,16 +93,18 @@
             </div>
 
             <div class="checkbox">
-              <input type="buttom" value="お問合せ内容を確認する" class="comfirm-btn" onclick="comfirm()">
+              <p class="comfirm-btn" onclick="ChangeDisplay('contact')">お問合せ内容を確認する</p>
             </div>
 
             <div class="form-p">
               <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
               <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
             </div>
+          {% comment %} ###############################      入力画面       ################# {% endcomment %}
           </div>
 
-          <div class="contact-form form-vertical" id="confirm-form">
+          <div class="contact-form form-vertical" id="confirmForm" style="display:none;">
+          {% comment %} ###############################      確認画面       ################# {% endcomment %}
 
             <div class="rte">
               <p>切り替え完了</p>
@@ -171,13 +174,14 @@
             </div>
 
             <div class="checkbox">
-              <input type="buttom" value="お問合せ内容を確認する" class="comfirm-btn" onclick="back()">
+              <p class="comfirm-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
             </div>
 
             <div class="form-p">
               <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
               <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
             </div>
+            {% comment %} ###############################      確認画面       ################# {% endcomment %}
           </div>
 
         {% endif %}
@@ -187,27 +191,23 @@
   </div>
 </div>
 
+
 <script>
-  document.getElementById("contact-form").style.display ="block";
-  document.getElementById("comfirm-form").style.display ="none";
+  //      onclick="ChangeDisplay('   ')"で発動
+  function ChangeDisplay(Display){
+    //    入力画面
+    const contactForm = document.getElementById("contactForm");
+    //    確認画面
+    const confirmForm = document.getElementById("confirmForm");
 
-  function comfirm(){
-    const contactForm = document.getElementById("contact-form");
-
-    if(contactForm.style.display=="block"){
-      contactForm.style.display ="none"
-    } else {
-      contactForm.style.display ="block"
-    }
-  }
-
-  function back(){
-    const comfirmForm = document.getElementById("comfirm-form");
-
-    if(comfirmForm.style.display=="none"){
-      comfirmForm.style.display ="block"
-    } else {
-      comfirmForm.style.display ="none"
+    if(Display == "contact"){
+      scrollTo(0, 0);  // 画面トップにジャンプ
+      contactForm.style.display = "none";  // 入力画面が消える
+      confirmForm.style.display = "block";  // 確認画面が出現
+    }else if(Display == "confirm"){
+      scrollTo(0, 0);  // 画面トップにジャンプ
+      confirmForm.style.display = "none";  // 確認画面が消える
+      contactForm.style.display = "block";  // 入力画面が出現
     }
   }
 </script>
@@ -239,7 +239,7 @@
       display: block !important;
       align-self: flex-start !important;
     }
-    input,textarea,select {
+    .form input, .form textarea, .form select, .confirm-form {
       width: calc(95% - 150px) !important;
       margin: 0 !important;
       padding: 0 50px;;
@@ -247,7 +247,7 @@
       border: none;
       {% comment %} background: rgb(255, 245, 245); {% endcomment %}
     }
-    .textarea {
+    #{{ formId }}-message {
       line-height: 2em;
     }
     ::placeholder {
