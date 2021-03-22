@@ -17,7 +17,7 @@
             <h1>THANK YOU</h1>
             <p>お問い合せありがとうございます</p>
           </div>
-          <a class="back-btn" href="/">トップに戻る</a>
+          <a href="/"><p class="back-btn">トップに戻る</p></a>
         {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
 
         {% else %}
@@ -106,7 +106,7 @@
             </div>
 
             <div class="checkbox">
-              <p class="comfirm-btn" onclick="ChangeDisplay('contact')">お問合せ内容を確認する</p>
+              <p class="confirm-btn" onclick="ChangeDisplay('contact')">お問合せ内容を確認する</p>
             </div>
 
             <div class="form-p">
@@ -125,7 +125,7 @@
               <div class="bar-done">完了</div>
             </div>
 
-            <div class="form select-form">
+            <div class="form select-form" style="border-top: 1px solid rgb(220, 220, 220);">
               <div class="form-title">お問い合わせ種別<span aria-hidden="true">*</span></div>
               <div class="input-value" id="op-form-type"></div>
             </div>
@@ -157,7 +157,7 @@
 
             <div class="form textarea-form">
               <div class="textarea-title">お問合せ内容<span aria-hidden="true">*</span></div>
-              <div class="input-value" id="op-message"></div>
+              <div class="input-value" id="op-message" style="line-height: 2em!important;"></div>
             </div>
 
             <div class="form btn-form">
@@ -165,7 +165,7 @@
               <p class="contact-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
             </div>
 
-            <div>
+            <div class="form-p">
               <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
               <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
             </div>
@@ -288,8 +288,9 @@
     }
     #{{ formId }}-message {
       line-height: 2em;
+      padding: 15px 50px;
     }
-    .comfirm-btn {
+    .confirm-btn {
       display: block;
       line-height: 2.5em;
       text-align: center;
@@ -321,11 +322,8 @@
       border-bottom: 1px solid rgb(220, 220, 220);
       line-height: 4em;
     }
-    .comfirm-page .select-form {
-
-    }
     .confirm-page .btn-form {
-      border-bottom: none;
+      border-bottom: none !important;
     }
     .confirm-page .form-title {
       width: 150px;
@@ -333,7 +331,7 @@
       padding: 10 0;
     }
     .confirm-page .textarea-title {
-      line-height: 2em;
+      line-height: 4em;
       display: block !important;
       align-self: flex-start !important;
     }
@@ -363,7 +361,7 @@
       border: 1px solid black;
       cursor: pointer;
     }
-    .confirm-page div p {
+    .confirm-page .form-p {
       margin-bottom: 0;
       line-height: 2em;
       text-align: center;
@@ -374,7 +372,6 @@
     .contact-form-bar {
       width: 100%;
       display: flex;
-      justify-content: space-between;
     }
     .contact-form-bar div {
       width: 33%;
@@ -383,42 +380,8 @@
       margin-bottom: 50px;
       background: rgb(255, 245, 245);
     }
-    /* ##############  入力画面  ################### */
-    .contact-page {
-      display: flex;
-      flex-direction: column;
-    }
-    .contact-page .form {
-      width: 90%;
-      padding : 25px 0;
-      border-bottom: 1px solid rgb(220, 220, 220);
-    }
-    .contact-page .textarea-form {
-      border-bottom: none;
-      margin-bottom: 50px;
-    }
-    .contact-page label {
-      width: 150px;
-      margin: 10 !important;
-      padding: 10 0;
-    }
-    .contact-page .textarea-label {
-      line-height: 2em;
-      display: block !important;
-      align-self: flex-start !important;
-    }
-    .form input, .form textarea, .form select {
-      width: 100%;
-      margin: 10 auto!important;
-      padding: 0 50px;
-      line-height: 2em;
-      border: none;
-      background: rgb(255, 245, 245);
-    }
-    #{{ formId }}-message {
-      line-height: 2em;
-    }
-    .comfirm-btn {
+    /* ##############  送信成功画面  ################### */
+    .back-btn {
       display: block;
       line-height: 2.5em;
       text-align: center;
@@ -428,14 +391,119 @@
       color: white;
       cursor: pointer;
     }
-    .contact-page div p {
+    /* ##############  送信成功画面  ################### */
+
+    /* ##############  入力画面  ################### */
+    .contact-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-page .select-form {
+      border-top: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .form {
+      margin: 0 auto;
+      width: 90%;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .textarea-form {
+    }
+    .contact-page label {
+      width: 150px;
+      line-height: 3em;
+    }
+    .contact-page .textarea-label {
+      line-height: 3em;
+      display: block !important;
+      align-self: flex-start !important;
+    }
+    .form input, .form textarea, .form select {
+      width: 100%;
+      margin: 10 auto!important;
+      padding: 0 50px;
+      line-height: 3em;
+      border: none;
+      background: rgb(255, 245, 245);
+    }
+    #{{ formId }}-message {
+      padding: 15px 50px;
+      line-height: 2em;
+    }
+    .confirm-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .contact-page .form-p p {
       margin-bottom: 0;
       line-height: 2em;
-      text-align: center;
     }
     /* ##############  入力画面  ################### */
     ::placeholder {
       color: rgb(155, 155, 155);
     }
+    /* ##############  確認画面  ################### */
+    .confirm-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .confirm-page .select-form {
+      border-top: 1px solid rgb(220, 220, 220);
+    }
+    .confirm-page .form {
+      margin: 0 auto;
+      width: 90%;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .confirm-page .textarea-form {
+    }
+    .confirm-page .form-title {
+      width: 150px;
+      line-height: 3em;
+    }
+    .confirm-page .input-value {
+      width: 100%;
+      margin: 10 auto!important;
+      padding: 0 30px;
+      line-height: 3em;
+    }
+    #op-message {
+      padding: 15px 50px;
+      line-height: 2em;
+    }
+    .confirm-page .submit-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 30px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .confirm-page .contact-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 30px auto !important;
+      width: 300px !important;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .confirm-page .form-p p {
+      margin-bottom: 0;
+      line-height: 2em;
+    }
+    .confirm-page .btn-form {
+      border-bottom: none !important;
+    }
+    /* ##############  確認画面  ################### */
   }
 </style>
