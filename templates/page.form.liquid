@@ -17,6 +17,7 @@
             <h1>THANK YOU</h1>
             <p>お問い合せありがとうございます</p>
           </div>
+          <a class="back-btn" href="/">トップに戻る</a>
         {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
 
         {% else %}
@@ -44,7 +45,7 @@
             {{ form.errors | default_errors }}
 
             {% include 'form-status', form: form, form_id: formId %}
-            <div class="form">
+            <div class="form select-form">
               <label for="ContactForm-contact-type">お問い合わせ種別<span aria-hidden="true">*</span></label>
               <select id="ContactForm-contact-type" name="contact[お問い合わせ種別]">
                 <option>サンプル１</option>
@@ -54,7 +55,7 @@
             </div>
 
             <div class="form">
-              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}<span aria-hidden="true">*</span></label>
+              <label for="{{ formId }}-name">お名前<span aria-hidden="true">*</span></label>
               <input required class="required" type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="仕事　太郎">
             </div>
 
@@ -124,42 +125,42 @@
               <div class="bar-done">完了</div>
             </div>
 
-            <div class="form">
+            <div class="form select-form">
               <div class="form-title">お問い合わせ種別<span aria-hidden="true">*</span></div>
-              <div class="input-value">お問い合わせ種別</div>
+              <div class="input-value" id="op-form-type"></div>
             </div>
 
             <div class="form">
-              <div class="form-title">名前<span aria-hidden="true">*</span></div>
-              <div class="input-value">名前</div>
+              <div class="form-title">お名前<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-name"></div>
             </div>
 
             <div class="form">
               <div class="form-title">フリガナ<span aria-hidden="true">*</span></div>
-              <div class="input-value">フリガナ</div>
+              <div class="input-value" id="op-name-furigana"></div>
             </div>
 
             <div class="form">
               <div class="form-title">会社名</div>
-              <div class="input-value">会社名</div>
+              <div class="input-value" id="op-company-name"></div>
             </div>
 
             <div class="form">
               <div class="form-title">メールアドレス<span aria-hidden="true">*</span></div>
-              <div class="input-value">メールアドレス</div>
+              <div class="input-value" id="op-email"></div>
             </div>
 
             <div class="form">
               <div class="form-title">電話番号<span aria-hidden="true">*</span></div>
-              <div class="input-value">電話番号</div>
+              <div class="input-value" id="op-phone"></div>
             </div>
 
             <div class="form textarea-form">
               <div class="textarea-title">お問合せ内容<span aria-hidden="true">*</span></div>
-              <div class="input-value">お問合せ内容</div>
+              <div class="input-value" id="op-message"></div>
             </div>
 
-            <div class="form">
+            <div class="form btn-form">
               <input type="submit" class="submit-btn" value="入力内容を送信する">
               <p class="contact-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
             </div>
@@ -195,7 +196,7 @@
       confirmPage.style.display = "none";  // 確認画面が消える
       contactPage.style.display = "block";  // 入力画面が出現
     }
-    
+
     let FormType = document.getElementById('ContactForm-contact-type');
     let Name = document.getElementById('{{ formId }}-name');
     let NameFurigana = document.getElementById('{{ formId }}-name-furigana');
@@ -203,6 +204,22 @@
     let Email = document.getElementById('{{ formId }}-email');
     let Phone = document.getElementById('{{ formId }}-phone');
     let Message = document.getElementById('{{ formId }}-message');
+
+    let opFormType = document.getElementById('op-form-type');
+    let opName = document.getElementById('op-name');
+    let opNameFurigana = document.getElementById('op-name-furigana');
+    let opCompanyName = document.getElementById('op-company-name');
+    let opEmail = document.getElementById('op-email');
+    let opPhone = document.getElementById('op-phone');
+    let opMessage = document.getElementById('op-message');
+
+    opFormType.innerText = FormType.value;
+    opName.innerText = Name.value;
+    opNameFurigana.innerText = NameFurigana.value;
+    opCompanyName.innerText = CompanyName.value;
+    opEmail.innerText = Email.value;
+    opPhone.innerText = Phone.value;
+    opMessage.innerText = Message.value;
   }
 </script>
 
@@ -220,6 +237,19 @@
       margin-bottom: 50px;
       background: rgb(255, 245, 245);
     }
+    /* ##############  送信成功画面  ################### */
+    .back-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    /* ##############  送信成功画面  ################### */
+
     /* ##############  入力画面  ################### */
     .contact-page {
       display: flex;
@@ -232,8 +262,10 @@
       padding : 25px 0;
       border-bottom: 1px solid rgb(220, 220, 220);
     }
+    .contact-page .select-form {
+      border-top: 1px solid rgb(220, 220, 220);
+    }
     .contact-page .textarea-form {
-      border-bottom: none;
       margin-bottom: 50px;
     }
     .contact-page label {
@@ -280,16 +312,20 @@
     .confirm-page {
       display: flex;
       flex-direction: column;
-      border-bottom: 1px solid rgb(220, 220, 220);
-      border-top: 1px solid rgb(220, 220, 220);
     }
     .confirm-page .form {
       display: flex;
       justify-content: space-between;
       align-items: center !important;
       padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+      line-height: 4em;
     }
-    .confirm-page .textarea-form {
+    .comfirm-page .select-form {
+
+    }
+    .confirm-page .btn-form {
+      border-bottom: none;
     }
     .confirm-page .form-title {
       width: 150px;
@@ -335,6 +371,71 @@
     /* ##############  確認画面  ################### */
   }
   @media screen and (max-width: 749px) {
-    
+    .contact-form-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .contact-form-bar div {
+      width: 33%;
+      line-height: 2em;
+      text-align: center;
+      margin-bottom: 50px;
+      background: rgb(255, 245, 245);
+    }
+    /* ##############  入力画面  ################### */
+    .contact-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-page .form {
+      width: 90%;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .textarea-form {
+      border-bottom: none;
+      margin-bottom: 50px;
+    }
+    .contact-page label {
+      width: 150px;
+      margin: 10 !important;
+      padding: 10 0;
+    }
+    .contact-page .textarea-label {
+      line-height: 2em;
+      display: block !important;
+      align-self: flex-start !important;
+    }
+    .form input, .form textarea, .form select {
+      width: 100%;
+      margin: 10 auto!important;
+      padding: 0 50px;
+      line-height: 2em;
+      border: none;
+      background: rgb(255, 245, 245);
+    }
+    #{{ formId }}-message {
+      line-height: 2em;
+    }
+    .comfirm-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .contact-page div p {
+      margin-bottom: 0;
+      line-height: 2em;
+      text-align: center;
+    }
+    /* ##############  入力画面  ################### */
+    ::placeholder {
+      color: rgb(155, 155, 155);
+    }
   }
 </style>
