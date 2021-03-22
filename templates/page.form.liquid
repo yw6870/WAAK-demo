@@ -45,8 +45,8 @@
 
             {% include 'form-status', form: form, form_id: formId %}
             <div class="form">
-              <label for="ContactForm-contac-type">お問い合わせ種別<span aria-hidden="true">*</span></label>
-              <select id="ContactForm-contac-type" name="contact[お問い合わせ種別]">
+              <label for="ContactForm-contact-type">お問い合わせ種別<span aria-hidden="true">*</span></label>
+              <select id="ContactForm-contact-type" name="contact[お問い合わせ種別]">
                 <option>サンプル１</option>
                 <option>サンプル２</option>
                 <option>サンプル３</option>
@@ -195,6 +195,14 @@
       confirmPage.style.display = "none";  // 確認画面が消える
       contactPage.style.display = "block";  // 入力画面が出現
     }
+    
+    let FormType = document.getElementById('ContactForm-contact-type');
+    let Name = document.getElementById('{{ formId }}-name');
+    let NameFurigana = document.getElementById('{{ formId }}-name-furigana');
+    let CompanyName = document.getElementById('{{ formId }}-company-name');
+    let Email = document.getElementById('{{ formId }}-email');
+    let Phone = document.getElementById('{{ formId }}-phone');
+    let Message = document.getElementById('{{ formId }}-message');
   }
 </script>
 
