@@ -1,28 +1,76 @@
 <div class="page-width">
   <div class="grid">
     <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-      <div class="section-header text-center">
-        <h1>{{ page.title }}</h1>
-      </div>
 
-      {% if page.content.size > 0 %}
-        <div class="rte">
-          {{ page.content }}
-        </div>
-      {% endif %}
+      {%- assign formId = 'ContactForm' -%}
+      {% form 'contact', id: formId %}
+        {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
+        {% if form.posted_successfully? %}
 
-      <div class="contact-form form-vertical">
-        {%- assign formId = 'ContactForm' -%}
-        {% form 'contact', id: formId %}
-          {% include 'form-status', form: form, form_id: formId %}
+          <div class="contact-form-bar">
+            <div class="bar-input">入力</div>
+            <div class="bar-confirmation">確認</div>
+            <div class="bar-done" style="background:black;color:white;">完了</div>
+          </div>
 
-          <div class="grid grid--half-gutters">
-            <div class="grid__item medium-up--one-half">
-              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
-              <input type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          <div class="section-header text-center">
+            <h1>THANK YOU</h1>
+            <p>お問い合せありがとうございます</p>
+          </div>
+          <a href="/"><p class="back-btn">トップに戻る</p></a>
+        {% comment %} #####################        送信が成功したときの処理 {% endcomment %}
+
+        {% else %}
+
+        {% comment %} #####################        送信が失敗したときの処理 {% endcomment %}
+
+          <div class="section-header text-center">
+            <h1>CONTACT</h1>
+            <p>お問い合わせ</p>
+          </div>
+
+          <div class="contact-page form-vertical" id="contactPage">
+          {% comment %} ###############################      入力画面       ################# {% endcomment %}
+
+            <div class="rte">
+              <p>WAAKに関するお問い合わせや採用ご希望など、すべてのお問い合わせはこちらのフォームからお受けしておりますフォーム送信後は担当者より折り返しご連絡しますので少々お待ちください。</p>
             </div>
-            <div class="grid__item medium-up--one-half">
-              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+
+            <div class="contact-form-bar">
+              <div class="bar-input" style="background:black;color:white;">入力</div>
+              <div class="bar-confirmation">確認</div>
+              <div class="bar-done">完了</div>
+            </div>
+
+            {{ form.errors | default_errors }}
+
+            {% include 'form-status', form: form, form_id: formId %}
+            <div class="form select-form">
+              <label for="ContactForm-contact-type">お問い合わせ種別<span aria-hidden="true">*</span></label>
+              <select id="ContactForm-contact-type" name="contact[お問い合わせ種別]">
+                <option>サンプル１</option>
+                <option>サンプル２</option>
+                <option>サンプル３</option>
+              </select>
+            </div>
+
+            <div class="form">
+              <label for="{{ formId }}-name">お名前<span aria-hidden="true">*</span></label>
+              <input required class="required" type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="仕事　太郎">
+            </div>
+
+            <div class="form">
+              <label for="{{ formId }}-name-furigana">フリガナ<span aria-hidden="true">*</span></label>
+              <input type="text" id="{{ formId }}-name-furigana" name="contact[フリガナ]" value="" placeholder="シゴト　タロウ">
+            </div>
+
+            <div class="form">
+              <label for="{{ formId }}-company-name">会社名</label>
+              <input type="text" id="{{ formId }}-company-name" name="contact[会社名]" value="" placeholder="ワアク株式会社">
+            </div>
+
+            <div class="form">
+              <label for="{{ formId }}-email">メールアドレス<span aria-hidden="true">*</span></label>
               <input
                 type="email"
                 id="{{ formId }}-email"
@@ -31,6 +79,7 @@
                 autocapitalize="off"
                 value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
                 aria-required="true"
+                placeholder="sample@waak.space"
                 {%- if form.errors contains 'email' -%}
                   class="input--error"
                   aria-invalid="true"
@@ -45,18 +94,416 @@
                 </span>
               {%- endif -%}
             </div>
+
+            <div class="form">
+              <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="080********">
+            </div>
+
+            <div class="form textarea-form">
+              <label class="textarea-label" for="{{ formId }}-message">お問合せ内容<span aria-hidden="true">*</span></label>
+              <textarea class="textarea" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]" placeholder="お問合せ内容をご入力ください。">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+
+            <div class="checkbox">
+              <p class="confirm-btn" onclick="ChangeDisplay('contact')">お問合せ内容を確認する</p>
+            </div>
+
+            <div class="form-p">
+              <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
+              <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
+            </div>
+          {% comment %} ###############################      入力画面       ################# {% endcomment %}
           </div>
 
-          <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
-          <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+          <div class="confirm-page form-vertical" id="confirmPage" style="display:none;">
+          {% comment %} ###############################      確認画面       ################# {% endcomment %}
 
-          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
-          <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            <div class="contact-form-bar">
+              <div class="bar-input">入力</div>
+              <div class="bar-confirmation" style="background:black;color:white;">確認</div>
+              <div class="bar-done">完了</div>
+            </div>
 
-          <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+            <div class="form select-form" style="border-top: 1px solid rgb(220, 220, 220);">
+              <div class="form-title">お問い合わせ種別<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-form-type"></div>
+            </div>
 
-        {% endform %}
-      </div>
+            <div class="form">
+              <div class="form-title">お名前<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-name"></div>
+            </div>
+
+            <div class="form">
+              <div class="form-title">フリガナ<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-name-furigana"></div>
+            </div>
+
+            <div class="form">
+              <div class="form-title">会社名</div>
+              <div class="input-value" id="op-company-name"></div>
+            </div>
+
+            <div class="form">
+              <div class="form-title">メールアドレス<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-email"></div>
+            </div>
+
+            <div class="form">
+              <div class="form-title">電話番号<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-phone"></div>
+            </div>
+
+            <div class="form textarea-form">
+              <div class="textarea-title">お問合せ内容<span aria-hidden="true">*</span></div>
+              <div class="input-value" id="op-message" style="line-height: 2em!important;"></div>
+            </div>
+
+            <div class="form btn-form">
+              <input type="submit" class="submit-btn" value="入力内容を送信する">
+              <p class="contact-btn" onclick="ChangeDisplay('confirm')">入力画面へ戻る</p>
+            </div>
+
+            <div class="form-p">
+              <p>※ご入力いただいた個人情報は、お問い合わせへの回答・連絡のみに利用いたします。</p>
+              <p>※ご入力いただいた個人情報に関しては、<a href="#" style="border-bottom: 1px solid black;padding-bottom: 5px;">プライバシーポリシー</a>をご参照ください。</p>
+            </div>
+            {% comment %} ###############################      確認画面       ################# {% endcomment %}
+          </div>
+
+        {% endif %}
+        {% comment %} #####################        送信が失敗したときの処理 {% endcomment %}
+      {% endform %}
     </div>
   </div>
 </div>
+
+<script>
+  //      onclick="ChangeDisplay('   ')"で発動
+  function ChangeDisplay(Display){
+    //    入力画面
+    const contactPage = document.getElementById("contactPage");
+    //    確認画面
+    const confirmPage = document.getElementById("confirmPage");
+
+    if(Display == "contact"){
+      scrollTo(0, 0);  // 画面トップにジャンプ
+      contactPage.style.display = "none";  // 入力画面が消える
+      confirmPage.style.display = "block";  // 確認画面が出現
+    }else if(Display == "confirm"){
+      scrollTo(0, 0);  // 画面トップにジャンプ
+      confirmPage.style.display = "none";  // 確認画面が消える
+      contactPage.style.display = "block";  // 入力画面が出現
+    }
+
+    let FormType = document.getElementById('ContactForm-contact-type');
+    let Name = document.getElementById('{{ formId }}-name');
+    let NameFurigana = document.getElementById('{{ formId }}-name-furigana');
+    let CompanyName = document.getElementById('{{ formId }}-company-name');
+    let Email = document.getElementById('{{ formId }}-email');
+    let Phone = document.getElementById('{{ formId }}-phone');
+    let Message = document.getElementById('{{ formId }}-message');
+
+    let opFormType = document.getElementById('op-form-type');
+    let opName = document.getElementById('op-name');
+    let opNameFurigana = document.getElementById('op-name-furigana');
+    let opCompanyName = document.getElementById('op-company-name');
+    let opEmail = document.getElementById('op-email');
+    let opPhone = document.getElementById('op-phone');
+    let opMessage = document.getElementById('op-message');
+
+    opFormType.innerText = FormType.value;
+    opName.innerText = Name.value;
+    opNameFurigana.innerText = NameFurigana.value;
+    opCompanyName.innerText = CompanyName.value;
+    opEmail.innerText = Email.value;
+    opPhone.innerText = Phone.value;
+    opMessage.innerText = Message.value;
+  }
+</script>
+
+<style>
+  @media screen and (min-width: 750px) {
+    .contact-form-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .contact-form-bar div {
+      width: 33%;
+      line-height: 2em;
+      text-align: center;
+      margin-bottom: 50px;
+      background: rgb(255, 245, 245);
+    }
+    /* ##############  送信成功画面  ################### */
+    .back-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    /* ##############  送信成功画面  ################### */
+
+    /* ##############  入力画面  ################### */
+    .contact-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-page .form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center !important;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .select-form {
+      border-top: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .textarea-form {
+      margin-bottom: 50px;
+    }
+    .contact-page label {
+      width: 150px;
+      margin: 0 !important;
+      padding: 10 0;
+    }
+    .contact-page .textarea-label {
+      line-height: 2em;
+      display: block !important;
+      align-self: flex-start !important;
+    }
+    .form input, .form textarea, .form select {
+      width: calc(95% - 150px) !important;
+      margin: 0 !important;
+      padding: 0 50px;
+      line-height: 4em;
+      border: none;
+      background: rgb(255, 245, 245);
+    }
+    #{{ formId }}-message {
+      line-height: 2em;
+      padding: 15px 50px;
+    }
+    .confirm-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .contact-page div p {
+      margin-bottom: 0;
+      line-height: 2em;
+      text-align: center;
+    }
+    /* ##############  入力画面  ################### */
+    ::placeholder {
+      color: rgb(155, 155, 155);
+    }
+    /* ##############  確認画面  ################### */
+    .confirm-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .confirm-page .form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center !important;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+      line-height: 4em;
+    }
+    .confirm-page .btn-form {
+      border-bottom: none !important;
+    }
+    .confirm-page .form-title {
+      width: 150px;
+      margin: 0 !important;
+      padding: 10 0;
+    }
+    .confirm-page .textarea-title {
+      line-height: 4em;
+      display: block !important;
+      align-self: flex-start !important;
+    }
+    .form .input-value  {
+      width: calc(95% - 150px) !important;
+      margin: 0 !important;
+      padding: 0 50px;;
+      line-height: 4em;
+      border: none;
+    }
+    .confirm-page .submit-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .confirm-page .contact-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .confirm-page .form-p {
+      margin-bottom: 0;
+      line-height: 2em;
+      text-align: center;
+    }
+    /* ##############  確認画面  ################### */
+  }
+  @media screen and (max-width: 749px) {
+    .contact-form-bar {
+      width: 100%;
+      display: flex;
+    }
+    .contact-form-bar div {
+      width: 33%;
+      line-height: 2em;
+      text-align: center;
+      margin-bottom: 50px;
+      background: rgb(255, 245, 245);
+    }
+    /* ##############  送信成功画面  ################### */
+    .back-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    /* ##############  送信成功画面  ################### */
+
+    /* ##############  入力画面  ################### */
+    .contact-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-page .select-form {
+      border-top: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .form {
+      margin: 0 auto;
+      width: 90%;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .contact-page .textarea-form {
+    }
+    .contact-page label {
+      width: 150px;
+      line-height: 3em;
+    }
+    .contact-page .textarea-label {
+      line-height: 3em;
+      display: block !important;
+      align-self: flex-start !important;
+    }
+    .form input, .form textarea, .form select {
+      width: 100%;
+      margin: 10 auto!important;
+      padding: 0 50px;
+      line-height: 3em;
+      border: none;
+      background: rgb(255, 245, 245);
+    }
+    #{{ formId }}-message {
+      padding: 15px 50px;
+      line-height: 2em;
+    }
+    .confirm-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 50px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .contact-page .form-p p {
+      margin-bottom: 0;
+      line-height: 2em;
+    }
+    /* ##############  入力画面  ################### */
+    ::placeholder {
+      color: rgb(155, 155, 155);
+    }
+    /* ##############  確認画面  ################### */
+    .confirm-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .confirm-page .select-form {
+      border-top: 1px solid rgb(220, 220, 220);
+    }
+    .confirm-page .form {
+      margin: 0 auto;
+      width: 90%;
+      padding : 25px 0;
+      border-bottom: 1px solid rgb(220, 220, 220);
+    }
+    .confirm-page .textarea-form {
+    }
+    .confirm-page .form-title {
+      width: 150px;
+      line-height: 3em;
+    }
+    .confirm-page .input-value {
+      width: 100%;
+      margin: 10 auto!important;
+      padding: 0 30px;
+      line-height: 3em;
+    }
+    #op-message {
+      padding: 15px 50px;
+      line-height: 2em;
+    }
+    .confirm-page .submit-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 30px auto !important;
+      width: 300px !important;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    .confirm-page .contact-btn {
+      display: block;
+      line-height: 2.5em;
+      text-align: center;
+      margin: 30px auto !important;
+      width: 300px !important;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .confirm-page .form-p p {
+      margin-bottom: 0;
+      line-height: 2em;
+    }
+    .confirm-page .btn-form {
+      border-bottom: none !important;
+    }
+    /* ##############  確認画面  ################### */
+  }
+</style>
