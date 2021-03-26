@@ -1,0 +1,99 @@
+<div class="products-info">
+  <div class="products-info-left">
+    <div>
+      <a href="{{ settings.products-info-url-1 }}"><img src="https://cdn.shopify.com/s/files/1/0510/9422/5093/files/koitoku_Instagram_-_Google_Chrome_2.png?v=1613444538" alt="ストア情報"></a>
+    </div>
+    <div>
+      <a href="{{ settings.products-info-url-2 }}"><img src="https://cdn.shopify.com/s/files/1/0510/9422/5093/files/koitoku_Instagram_-_Google_Chrome_2.png?v=1613444538" alt="ストア情報"></a>
+    </div>
+    <div>
+      <a href="{{ settings.products-info-url-3 }}"><img src="https://cdn.shopify.com/s/files/1/0510/9422/5093/files/koitoku_Instagram_-_Google_Chrome_2.png?v=1613444538" alt="ストア情報"></a>
+    </div>
+  </div>
+  <div class="products-info-right">
+    <div>
+      <a href="{{ settings.products-info-url-4 }}"><img src="https://cdn.shopify.com/s/files/1/0510/9422/5093/files/koitoku_Instagram_-_Google_Chrome_2.png?v=1613444538" alt="ストア情報"></a>
+    </div>
+    <div>
+      <a href="{{ settings.products-info-url-5 }}"><img src="https://cdn.shopify.com/s/files/1/0510/9422/5093/files/koitoku_Instagram_-_Google_Chrome_2.png?v=1613444538" alt="ストア情報"></a>
+    </div>
+    <div>
+      <a href="{{ settings.products-info-url-6 }}"><img src="https://cdn.shopify.com/s/files/1/0510/9422/5093/files/koitoku_Instagram_-_Google_Chrome_2.png?v=1613444538" alt="ストア情報"></a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "products info",
+    "settings": [
+      {
+        "type": "url",
+        "id": "products-info-url-1",
+        "label": "左側（上）url"
+      },
+      {
+        "type": "image_picker",
+        "id": "products-info-image-1",
+        "label": "左側（上）image"
+      },
+      {
+        "type": "url",
+        "id": "products-info-url-2",
+        "label": "左側（中）"
+      },
+      {
+        "type": "image_picker",
+        "id": "products-info-image-2",
+        "label": "左側（中）image"
+      },
+      {
+        "type": "url",
+        "id": "products-info-url-3",
+        "label": "左側（下）"
+      },
+      {
+        "type": "image_picker",
+        "id": "products-info-image-3",
+        "label": "左側（下）image"
+      },
+      {
+        "type": "url",
+        "id": "products-info-url-4",
+        "label": "右側（上）"
+      },
+      {
+        "type": "image_picker",
+        "id": "products-info-image-4",
+        "label": "右側（上）image"
+      },
+      {
+        "type": "url",
+        "id": "products-info-url-5",
+        "label": "右側（中）"
+      },
+      {
+        "type": "image_picker",
+        "id": "products-info-image-5",
+        "label": "右側（中）image"
+      },
+      {
+        "type": "url",
+        "id": "products-info-url-6",
+        "label": "右側（下）"
+      },
+      {
+        "type": "image_picker",
+        "id": "products-info-image-6",
+        "label": "右側（下）image"
+      }
+    ],
+
+    "presets": [
+      {
+        "name": "products info",
+        "category": "products info"
+      }
+    ]
+  }
+{% endschema %}
